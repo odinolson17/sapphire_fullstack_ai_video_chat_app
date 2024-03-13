@@ -15,7 +15,15 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`User connected: ${socket.id}`);
+  // trigged by the front end
+  socket.on("send_message", (data) => {
+    // sends a message to everyone but the person who sent it.
+    socket.broadcast.emit("received_message", data);
+  })
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+  })
 });
 
 server.listen(port, () => {
