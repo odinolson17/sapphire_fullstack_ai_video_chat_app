@@ -1,7 +1,7 @@
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 
 export const loginRouter = Router();
 
-loginRouter.post("/", (req, res) => {
+loginRouter.post("/", (_req: Request, res: Response) => {
   res.send(200);
 });

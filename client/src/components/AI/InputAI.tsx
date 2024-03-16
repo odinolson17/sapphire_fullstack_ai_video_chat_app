@@ -8,7 +8,7 @@ function InputAI () {
 
     let inputMessage = (document.getElementById("inputQuestion") as HTMLInputElement).value;
 
-    const questionAsked: Response = await fetch("api/aiRouter/createMessage", {
+    const questionAsked: Response = await fetch("/api/aiRouter/createMessage", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
