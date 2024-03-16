@@ -5,8 +5,10 @@ function InputAI () {
 
   const sendQuestion = async (e: React.FormEvent) => {
     e.preventDefault();
-    const inputMessage = (document.getElementById("input") as HTMLInputElement | null);
-    const questionAsked: Response = await fetch("", {
+
+    let inputMessage = (document.getElementById("inputQuestion") as HTMLInputElement).value;
+
+    const questionAsked: Response = await fetch("api/aiRouter/createMessage", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -16,14 +18,17 @@ function InputAI () {
       })
     });
     const response = await questionAsked.json();
-    setAnswer(response) // edit this to work
+    setAnswer(response.choices[0].message.content)
+
+    // to clear the input space
+    inputMessage = "";
   }
   return (
     <>
-      {answer}
+      {answer.length > 0 ? answer : "Waiting for Response"}
       <br />
-      <input onClick={sendQuestion} id="inputQuestion" />
-      <button>Ask Question</button>
+      <input id="inputQuestion" />
+      <button onClick={sendQuestion}>Ask Question</button>
     </>
   )
 }
