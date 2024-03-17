@@ -24,6 +24,7 @@ function Signup () {
       });
       const response = await request.json();
       if (response) navigate('/home');
+      else navigate('/failedsignup');
     }
     if (password === secondPassword) {
       creatingUser();

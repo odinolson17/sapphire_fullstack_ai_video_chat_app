@@ -1,16 +1,16 @@
 import mongoose, { Schema } from 'mongoose';
 
-interface contacts {
+interface Contacts {
   name: string;
   email: string;
 }
 
-interface favsongs {
+interface Favsongs {
   artist: string;
   title: string;
 }
 
-interface videochats {
+interface Videochats {
   friendsname: string;
   friendsemail: string;
   chats: [{
@@ -21,7 +21,7 @@ interface videochats {
   roomid: string;
 }
 
-interface textchats {
+interface Textchats {
   friendsname: string;
   friendsemail: string;
   chats: [{
@@ -37,24 +37,28 @@ interface User {
   email: string;
   password: string;
   profilepic?: string;
-  textchats?: textchats[];
-  videochats?: videochats[];
-  favsongs?: favsongs[];
-  contacts?: contacts[];
+  textchats?: Textchats[];
+  videochats?: Videochats[];
+  favsongs?: Favsongs[];
+  contacts?: Contacts[];
 }
 
-const userSchema: Schema = new Schema<User>({
+const UserSchema: Schema = new Schema<User>({
   name: {
+    type: String,
     required: true
   },
   email: {
+    type: String,
     required: true,
     unique: true
   },
   password: {
+    type: String,
     required: true
   },
   profilepic: {
+    type: String,
     default: undefined
   },
   textchats: [{
@@ -79,6 +83,7 @@ const userSchema: Schema = new Schema<User>({
   }],
   favsongs: [{
     artist: {
+      type: String,
       unique: true
     },
     title: String
@@ -89,6 +94,6 @@ const userSchema: Schema = new Schema<User>({
   }]
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", UserSchema);
 
 export { User };
