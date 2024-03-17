@@ -45,6 +45,7 @@ function Signup () {
           value={name}
           autoComplete='on'
           onChange={(e) => setName(e.target.value)}
+          required={true}
         />
         <input 
           placeholder="Email"
@@ -52,6 +53,7 @@ function Signup () {
           value={email}
           autoComplete='on'
           onChange={(e) => setEmail(e.target.value)}
+          required={true}
         />
         <input 
           placeholder="Password"
@@ -59,6 +61,7 @@ function Signup () {
           value={password}
           autoComplete='on'
           onChange={(e) => setPassword(e.target.value)}
+          required={true}
         />
         <input 
           placeholder="Enter your password again"
@@ -66,6 +69,7 @@ function Signup () {
           value={secondPassword}
           autoComplete='on'
           onChange={(e) =>  setSecondPassword(e.target.value)}
+          required={true}
         />
         <button>
         Create
