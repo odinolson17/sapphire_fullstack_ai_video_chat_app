@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './styles/signin.css';
 
 function Signin () {
   const navigate = useNavigate();
@@ -35,27 +36,52 @@ function Signin () {
 
   return (
     <>
-      <form onSubmit={attemptSignin}>
-        <input 
-          placeholder="email"
-          value={enteredEmail}
-          autoComplete='on'
-          onChange={(e) => setEnteredEmail(e.target.value)}
-        />
-        <input 
-          placeholder="password"
-          type="password"
-          autoComplete='on'
-          value={enteredPassword}
-          onChange={(e) => setEnteredPassword(e.target.value)}
-        />
-        <button>Sign In</button>
-      </form>
-      <br /> <br />
-      <button><Link to="/signup">Sign Up</Link></button>
-      <br /> <br /> <br />
-      <button>Sign in with Google</button>
-      <button>Sign in with Microsoft</button>
+      <div className='to-the-left'>
+          <h1 className='logo'>SAPPHIRE</h1>
+      </div>
+      <div className='center-content'>
+        <br />
+        <div className='sign-in'>
+          <div className='left-side'>
+            <form onSubmit={attemptSignin}>
+              <div className="underline">
+                <label>Email:</label>
+                <input 
+                  className="signininput"
+                  value={enteredEmail}
+                  autoComplete='on'
+                  onChange={(e) => setEnteredEmail(e.target.value)}
+                />
+              </div>
+              <br />
+              <div className="underline">
+                <label>Password:</label>
+                <input 
+                  className="signininput"
+                  type="password"
+                  autoComplete='on'
+                  value={enteredPassword}
+                  onChange={(e) => setEnteredPassword(e.target.value)}
+                />
+              </div>
+              <br />
+              <div className="to-the-right">
+                <Link to="/signup"><button className='signupbutton'>Sign Up</button></Link>
+              </div>
+            </form>
+          </div>
+          <div className='right-side'>
+            <label>Sign In With:</label>
+            <br />
+            <div className='to-the-right'>
+              <button>Google</button>
+              <button>Microsoft</button>
+            </div>
+          </div>
+        </div>
+        <br /><br />
+        <button className="signinbutton">Sign In</button>
+      </div>
     </>
   )
 }

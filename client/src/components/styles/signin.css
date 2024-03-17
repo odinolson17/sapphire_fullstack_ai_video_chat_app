@@ -1,0 +1,92 @@
+* {
+  font-family: "Encode Sans Expanded", sans-serif;
+  color: black;
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.to-the-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.logo {
+  font-size: 5em;
+  padding-right: 0.8em;
+}
+
+.sign-in {
+  display: flex;
+  flex-direction: row;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+.left-side {
+  padding: 3em;
+}
+
+.right-side {
+  padding: 3em;
+  border-left: 3px black solid;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signininput {
+  border: none;
+}
+
+.underline {
+  border-bottom: black 1px solid;
+  padding: 0.2em;
+}
+
+.to-the-right {
+  display: flex;
+  justify-content: right;
+  padding: 1em 0em 1.5em 1em;
+}
+
+.signupbutton {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px black solid;
+  background-color: white;
+  color: black;
+}
+
+.signupbutton:hover {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px black solid;
+  color: rgb(224, 15, 60);
+}
+
+.signinbutton {
+  border-radius: 50px;
+  padding: 0.5em 1.2em;
+  background-color: white;
+  color: black;
+  border: 2px black solid;
+  transition: 1s;
+}
+
+.signinbutton:hover {
+  border-radius: 50px;
+  padding: 0.5em 1.2em;
+  background-color: red;
+  color: black;
+  border: 2px black solid;
+  transition: 1s;
+}
