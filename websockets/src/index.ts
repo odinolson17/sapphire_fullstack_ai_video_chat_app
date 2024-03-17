@@ -16,14 +16,17 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   // trigged by the front end
+  socket.on("join_room", (roomid) => {
+    socket.join(roomid);
+  });
+
   socket.on("send_message", (data) => {
-    // sends a message to everyone but the person who sent it.`
-    socket.broadcast.emit("received_message", data);
+    socket.to(data.room).emit("receive_message", data);
   })
 
   socket.on("disconnect", () => {
     console.log("User disconnected");
-  })
+  });
 });
 
 server.listen(port, () => {

@@ -1,0 +1,62 @@
+import { Socket } from 'socket.io-client'
+import { useEffect, useState } from 'react';
+
+interface Props {
+  socket: Socket;
+  name: string;
+  room: string;
+}
+
+interface messageDataObj {
+  room: string;
+  name: string;
+  message: string;
+  time: string;
+}
+
+function ChatBox ({ socket, name, room }: Props) {
+
+  const [currMessage, setCurrMessage] = useState<string>("");
+  const [messageList, setMessageList] = useState<messageDataObj[]>([]);
+
+  const sendMessage = async () => {
+    if (currMessage !== "") {
+      const messageData: messageDataObj = {
+        room: room,
+        name: name,
+        message: currMessage,
+        time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
+      }
+
+      await socket.emit("send_message", messageData);
+      setMessageList((list) => [...list, messageData])
+    }
+  };
+
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      setMessageList((list) => [...list, data]);
+    })
+  }, [socket]);
+
+  return (
+    <>
+      <div>
+        <p>Live Chat</p>
+      </div>
+      <div>
+        {messageList.map((messageContent) => (
+          <h1>{messageContent.message}</h1>
+        ))}
+      </div>
+      <div>
+        <input 
+          onChange={(e) => setCurrMessage(e.target.value)}
+        />
+        <button onClick={sendMessage}>&#9658;</button>
+      </div>
+    </>
+  )
+}
+
+export default ChatBox;
