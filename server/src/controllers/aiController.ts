@@ -23,7 +23,6 @@ export async function createMessage (req: Request, res: Response, next: NextFunc
           content: req.body.message
         }
       ],
-      stream: true,
       model: 'gpt-3.5-turbo',
       temperature: 1,
       max_tokens: 120,
@@ -32,7 +31,8 @@ export async function createMessage (req: Request, res: Response, next: NextFunc
       presence_penalty: 0,
     });
     res.locals.result = chatCompletion;
-    return next(); 
+    console.log(res.locals.result);
+    return next();
   } catch (err) {
     console.log({err});
     return next({

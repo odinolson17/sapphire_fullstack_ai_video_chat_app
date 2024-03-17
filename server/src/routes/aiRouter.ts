@@ -6,5 +6,5 @@ import { Router, Request, Response } from 'express';export const aiRouter = Rout
 import { createMessage } from '../controllers/aiController';
 
 aiRouter.post("/createMessage", createMessage, (_req: Request, res: Response) => {
-  res.send(200).json(res.locals.result);
+  res.status(200).json(res.locals.result);
 });
