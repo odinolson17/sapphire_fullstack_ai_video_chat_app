@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function InputAI () {
   const [answer, setAnswer] = useState<string>("");
-  const [inputValue, setInputValue] = useState<string>();
+  const [inputValue, setInputValue] = useState<string>("");
 
   const sendQuestion = async (e: React.FormEvent) => {
     e.preventDefault();

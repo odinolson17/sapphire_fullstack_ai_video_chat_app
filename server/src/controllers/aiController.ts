@@ -1,9 +1,7 @@
 import dotenv from 'dotenv';
-dotenv.config();
-
 import { Request, Response, NextFunction } from 'express';
-
 import OpenAI from 'openai';
+dotenv.config();
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY
@@ -11,7 +9,6 @@ const openai = new OpenAI({
 
 export async function createMessage (req: Request, res: Response, next: NextFunction) {
   try {
-    console.log("Now inside");
     const chatCompletion = await openai.chat.completions.create({
       messages: [
         {
@@ -31,7 +28,6 @@ export async function createMessage (req: Request, res: Response, next: NextFunc
       presence_penalty: 0,
     });
     res.locals.result = chatCompletion;
-    console.log(res.locals.result);
     return next();
   } catch (err) {
     console.log({err});

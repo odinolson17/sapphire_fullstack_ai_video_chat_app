@@ -1,11 +1,11 @@
-import express, { Express, Request, Response, ErrorRequestHandler } from 'express';
-import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import express, { Express, Request, Response, ErrorRequestHandler } from 'express';
+import mongoose from 'mongoose';
 dotenv.config();
 
-const port: number = 5555;
 const app: Express = express();
+const port: number = 5555;
 
 const mongoURI: string = 'mongodb://127.0.0.1:27017/sapphireApp'; // switch later
 mongoose.connect(mongoURI);
@@ -14,6 +14,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// ai routes:
+import { aiRouter } from './routes/aiRouter';
+app.use("/api/aiRouter", aiRouter);
+
 // login routes:
 import { loginRouter } from './routes/loginRouter';
 app.use("/api/loginRouter", loginRouter);
@@ -21,10 +25,6 @@ app.use("/api/loginRouter", loginRouter);
 // user routes:
 import { userRouter } from './routes/userRouter';
 app.use("/api/userRouter", userRouter);
-
-// ai routes:
-import { aiRouter } from './routes/aiRouter';
-app.use("/api/aiRouter", aiRouter);
 
 // errors:
 app.get('*', (_req: Request, res: Response) => {
