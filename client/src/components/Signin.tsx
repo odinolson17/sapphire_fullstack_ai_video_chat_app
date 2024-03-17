@@ -11,18 +11,21 @@ function Signin () {
     e.preventDefault();
     if (enteredEmail !== "" && enteredPassword !== "") {
       const findUser = async (): Promise<void> => {
-        const request = await fetch("api/loginRouter/findUser", {
-          method: "POST",
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: enteredEmail
-          })
-        });
-        const response = await request.json();
-
-        if (response.password === enteredPassword) {
-          navigate('/home');
-        } else {
+        try {
+          const request = await fetch("api/loginRouter/findUser", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: enteredEmail
+            })
+          });
+          const response = await request.json();
+          if (response.password === enteredPassword) {
+              navigate('/home');
+          } else {
+              navigate('/failedsignin');
+            }
+        } catch {
           navigate('/failedsignin');
         }
       }
@@ -32,18 +35,22 @@ function Signin () {
 
   return (
     <>
-      <input 
-        placeholder="email"
-        value={enteredEmail}
-        onChange={(e) => setEnteredEmail(e.target.value)}
-      />
-      <input 
-        placeholder="password"
-        type="password"
-        value={enteredPassword}
-        onChange={(e) => setEnteredPassword(e.target.value)}
-      />
-      <button onClick={attemptSignin}>Sign In</button>
+      <form onSubmit={attemptSignin}>
+        <input 
+          placeholder="email"
+          value={enteredEmail}
+          autoComplete='on'
+          onChange={(e) => setEnteredEmail(e.target.value)}
+        />
+        <input 
+          placeholder="password"
+          type="password"
+          autoComplete='on'
+          value={enteredPassword}
+          onChange={(e) => setEnteredPassword(e.target.value)}
+        />
+        <button>Sign In</button>
+      </form>
       <br /> <br />
       <button><Link to="/signup">Sign Up</Link></button>
       <br /> <br /> <br />

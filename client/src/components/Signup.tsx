@@ -13,18 +13,22 @@ function Signup () {
     e.preventDefault();
 
     const creatingUser = async () => {
-      const request = await fetch("api/loginRouter/createUser", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          password: password
-        })
-      });
-      const response = await request.json();
-      if (response) navigate('/home');
-      else navigate('/failedsignup');
+      try {
+        const request = await fetch("api/loginRouter/createUser", {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password
+          })
+        });
+        const response = await request.json();
+        if (response) navigate('/home');
+        else navigate('/failedsignup');
+      } catch {
+        navigate('/failedsignup');
+      }
     }
     if (password === secondPassword) {
       creatingUser();
@@ -35,32 +39,38 @@ function Signup () {
 
   return (
     <>
-      <input 
-        placeholder="Your name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input 
-        placeholder="Email"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input 
-        placeholder="Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input 
-        placeholder="Enter your password again"
-        type="password"
-        value={secondPassword}
-        onChange={(e) => setSecondPassword(e.target.value)}
-      />
-      <button onClick={createUser}>
+      <form onSubmit={createUser}>
+        <input 
+          placeholder="Your name"
+          value={name}
+          autoComplete='on'
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input 
+          placeholder="Email"
+          type="email"
+          value={email}
+          autoComplete='on'
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input 
+          placeholder="Password"
+          type="password"
+          value={password}
+          autoComplete='on'
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input 
+          placeholder="Enter your password again"
+          type="password"
+          value={secondPassword}
+          autoComplete='on'
+          onChange={(e) =>  setSecondPassword(e.target.value)}
+        />
+        <button>
         Create
-      </button>
+        </button>
+      </form>
     </>
   )
 }

@@ -13,7 +13,7 @@ interface Favsongs {
 interface Videochats {
   friendsname: string;
   friendsemail: string;
-  chats: [{
+  chats?: [{
     name: string;
     time: string;
     message: string;
@@ -24,7 +24,7 @@ interface Videochats {
 interface Textchats {
   friendsname: string;
   friendsemail: string;
-  chats: [{
+  chats?: [{
     name: string;
     time: string;
     message: string;
@@ -82,10 +82,7 @@ const UserSchema: Schema = new Schema<User>({
     roomid: String
   }],
   favsongs: [{
-    artist: {
-      type: String,
-      unique: true
-    },
+    artist: String,
     title: String
   }],
   contacts: [{

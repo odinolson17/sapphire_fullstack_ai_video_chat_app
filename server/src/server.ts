@@ -7,7 +7,7 @@ dotenv.config();
 const app: Express = express();
 const port: number = 5555;
 
-const mongoURI: string = 'mongodb://127.0.0.1:27017/sapphireApp'; // switch later
+const mongoURI: string = 'mongodb://127.0.0.1:27017/sapphireAppTwo'; // switch later
 mongoose.connect(mongoURI);
 
 app.use(cors());
