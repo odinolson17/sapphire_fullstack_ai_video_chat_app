@@ -43,7 +43,7 @@ function Signin () {
         <br />
         <div className='sign-in'>
           <div className='left-side'>
-            <form onSubmit={attemptSignin}>
+            <form>
               <div className="underline">
                 <label>Email:</label>
                 <input 
@@ -80,7 +80,9 @@ function Signin () {
           </div>
         </div>
         <br /><br />
-        <button className="signinbutton">Sign In</button>
+        <button
+          onClick={attemptSignin}
+          className="signinbutton">Sign In</button>
       </div>
     </>
   )
