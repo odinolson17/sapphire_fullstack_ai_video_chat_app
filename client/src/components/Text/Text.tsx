@@ -4,13 +4,18 @@ import io from 'socket.io-client';
 import { useState } from 'react';
 const socket = io('http://localhost:4000');
 
-function Text () {
-  const [name, setName] = useState<string>("");
+function Text ({ usersname }: { usersname: string }) {
+  let name: string;
+  if (usersname === undefined) {
+    name = "missingname"
+  } else {
+    name = usersname;
+  }
   const [room, setRoom] = useState<string>("");
   const [showChats, setShowChats] = useState<boolean>(false);
 
   const joinRoom = () => {
-    if (name !== "" && room !== "") {
+    if (room !== "") {
       socket.emit("join_room", room)
     }
     setShowChats(true);
@@ -25,9 +30,6 @@ function Text () {
     : (
       <>
       <h3>Join a Chat Room</h3>
-      <input 
-        onChange={(e) => setName(e.target.value)}
-      />
       <input 
         onChange={(e) => setRoom(e.target.value)}
       />

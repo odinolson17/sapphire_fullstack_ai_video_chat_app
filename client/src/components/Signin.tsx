@@ -21,8 +21,9 @@ function Signin () {
             })
           });
           const response = await request.json();
+          const usersName: string = response.name;
           if (response.password === enteredPassword) {
-              navigate('/home');
+              navigate('/home', { state: usersName });
           } else {
               navigate('/failedsignin');
             }

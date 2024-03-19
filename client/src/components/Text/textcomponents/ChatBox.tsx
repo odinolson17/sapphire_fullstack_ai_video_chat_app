@@ -30,6 +30,8 @@ function ChatBox ({ socket, name, room }: Props) {
 
       await socket.emit("send_message", messageData);
       setMessageList((list) => [...list, messageData])
+
+      setCurrMessage("");
     }
   };
 
@@ -46,11 +48,16 @@ function ChatBox ({ socket, name, room }: Props) {
       </div>
       <div>
         {messageList.map((messageContent) => (
-          <h1>{messageContent.message}</h1>
+          <>
+            <p>{messageContent.name}</p>
+            <p>{messageContent.message}</p>
+            <p>{messageContent.time}</p>
+          </>
         ))}
       </div>
       <div>
         <input 
+          value={currMessage}
           onChange={(e) => setCurrMessage(e.target.value)}
         />
         <button onClick={sendMessage}>&#9658;</button>
