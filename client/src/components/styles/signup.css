@@ -1,0 +1,47 @@
+* {
+  font-family: "Encode Sans Expanded", sans-serif;
+  color: black;
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-up {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 3em 10em;
+}
+
+.underline {
+  border-bottom: black 1px solid;
+  padding: 0.2em;
+}
+
+.signininput {
+  border: none;
+}
+
+.littletext {
+  color: rgb(161, 155, 155);
+  font-size: small;
+  padding: 0;
+}
+
+.to-the-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.to-the-right {
+  display: flex;
+  justify-content: right;
+  padding: 1em 0em 0em 1em;
+}
