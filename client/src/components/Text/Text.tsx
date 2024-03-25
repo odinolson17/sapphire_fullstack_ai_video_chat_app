@@ -21,6 +21,14 @@ function Text ({ usersname }: { usersname: string }) {
     setShowChats(true);
   };
 
+  // Place to edit password, add profile pic, and change display name, and delete account, and sign out.
+
+  // Search for users that exist
+
+  // add them as a friend and create a unique id that will always be their room to chat
+
+  // render their friends they have so they can go back to call them
+
   return (
     <>
     {showChats 

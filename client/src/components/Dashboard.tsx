@@ -1,5 +1,4 @@
 import Text from './Text/Text';
-import InputAI from './AI/InputAI';
 
 import { useLocation } from 'react-router-dom';
 
@@ -9,10 +8,8 @@ function Dashboard () {
 
   return (
     <>
-      {usersname ? "Hello, " + usersname : "Hello, user!"}
-      <br /><br />
-      <InputAI />
-      <br /><br />
+      {usersname ? `Welcome ${usersname}!` : "Welcome user!"}
+      <br />
       <Text usersname={usersname} />
     </>
   )
