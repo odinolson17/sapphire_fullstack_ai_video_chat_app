@@ -1,15 +1,15 @@
+import FriendSearchInput from '../__common__/friendSearch/FriendSearchInput';
 import Text from '../Text/Text';
-import { useRecoilState } from 'recoil';
-import { userStore } from '../../store/user/userStore';
+import TopBar from '../__common__/dashboard/TopBar';
 
 function Dashboard () {
-  const [usersname] = useRecoilState(userStore);
 
   return (
     <>
-      {usersname ? `Welcome ${usersname}!` : "Welcome user!"}
-      <br />
-      <Text usersname={usersname} />
+      <TopBar />
+      <FriendSearchInput />
+      <br /><br /><br />
+      <Text />
     </>
   )
 }

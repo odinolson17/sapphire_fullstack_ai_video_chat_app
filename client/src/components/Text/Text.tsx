@@ -1,13 +1,15 @@
 import ChatBox from './components/ChatBox';
-
 import io from 'socket.io-client';
+import { useRecoilState } from 'recoil';
+import { userStore } from '../../store/user/userStore';
 import { useState } from 'react';
+
 const socket = io('http://localhost:4000');
 
-function Text ({ usersname }: { usersname: string }) {
-  let name: string = usersname ? usersname : "missingname";
+function Text () {
   const [room, setRoom] = useState<string>("");
   const [showChats, setShowChats] = useState<boolean>(false);
+  const [name] = useRecoilState(userStore);
 
   const joinRoom = () => {
     if (room !== "") {
@@ -15,14 +17,6 @@ function Text ({ usersname }: { usersname: string }) {
     }
     setShowChats(true);
   };
-
-  // Place to edit password, add profile pic, and change display name, and delete account, and sign out.
-
-  // Search for users that exist
-
-  // add them as a friend and create a unique id that will always be their room to chat
-
-  // render their friends they have so they can go back to call them
 
   return (
     <>
