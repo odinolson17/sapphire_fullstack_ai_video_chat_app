@@ -1,5 +1,7 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from "recoil";
+import { userStore } from '../../store/user/userStore';
+import { useState } from 'react';
 import './styles/signup.css';
 
 function Signup () {
@@ -9,6 +11,8 @@ function Signup () {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [secondPassword, setSecondPassword] = useState<string>("");
+  // holds the store
+  const [, setCurrentUser] = useRecoilState(userStore);
 
   const createUser = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,15 +29,25 @@ function Signup () {
           })
         });
         const response = await request.json();
-        if (response) navigate('/home', { state: name });
+        // success
+        if (response) {
+          setCurrentUser(name);
+          navigate('/home');
+        }
+        // failed
         else navigate('/failedsignup');
       } catch {
+        // failed
         navigate('/failedsignup');
       }
     }
+
+    // conditional to see if the function above will run
     if (password === secondPassword) {
+      // if the two passwords are entered are the same, function called
       creatingUser();
     } else {
+      // passwords are different, do not call function
       navigate('/failedsignup');
     }
   };

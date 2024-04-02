@@ -1,10 +1,9 @@
-import Text from './Text/Text';
-
-import { useLocation } from 'react-router-dom';
+import Text from '../Text/Text';
+import { useRecoilState } from 'recoil';
+import { userStore } from '../../store/user/userStore';
 
 function Dashboard () {
-  const location = useLocation();
-  const usersname: string = location.state;
+  const [usersname] = useRecoilState(userStore);
 
   return (
     <>

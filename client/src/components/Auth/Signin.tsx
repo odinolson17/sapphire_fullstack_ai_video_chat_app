@@ -1,5 +1,7 @@
-import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useRecoilState } from "recoil";
+import { userStore } from '../../store/user/userStore';
+import { useState } from 'react';
 import './styles/signin.css';
 
 function Signin () {
@@ -7,9 +9,13 @@ function Signin () {
 
   const [enteredEmail, setEnteredEmail] = useState<string>("");
   const [enteredPassword, setEnteredPassword] = useState<string>("");
+  // holds the store
+  const [, setCurrentUser] = useRecoilState(userStore);
 
   const attemptSignin = (e: React.FormEvent) => {
+    // so the form doesn't refresh itself
     e.preventDefault();
+    // checking that the fields are not empty
     if (enteredEmail !== "" && enteredPassword !== "") {
       const findUser = async (): Promise<void> => {
         try {
@@ -23,14 +29,20 @@ function Signin () {
           const response = await request.json();
           const usersName: string = response.name;
           if (response.password === enteredPassword) {
-              navigate('/home', { state: usersName });
+            // adding the user to the store
+            setCurrentUser(usersName);
+            // redirect
+            navigate('/home');
           } else {
+              // something went wrong
               navigate('/failedsignin');
             }
         } catch {
+          // something went wrong
           navigate('/failedsignin');
         }
       }
+      // calls the function 
       findUser();
     }
   }
@@ -67,7 +79,9 @@ function Signin () {
               </div>
               <br />
               <div className="to-the-right">
-                <Link to="/signup"><button className='signupbutton'>Sign Up</button></Link>
+                <Link to="/signup">
+                  <button className='signupbutton'>Sign Up</button>
+                </Link>
               </div>
             </form>
           </div>
@@ -83,7 +97,9 @@ function Signin () {
         <br /><br />
         <button
           onClick={attemptSignin}
-          className="signinbutton">Sign In</button>
+          className="signinbutton">
+            Sign In
+        </button>
       </div>
     </>
   )

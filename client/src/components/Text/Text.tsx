@@ -1,16 +1,11 @@
-import ChatBox from './textcomponents/ChatBox';
+import ChatBox from './components/ChatBox';
 
 import io from 'socket.io-client';
 import { useState } from 'react';
 const socket = io('http://localhost:4000');
 
 function Text ({ usersname }: { usersname: string }) {
-  let name: string;
-  if (usersname === undefined) {
-    name = "missingname"
-  } else {
-    name = usersname;
-  }
+  let name: string = usersname ? usersname : "missingname";
   const [room, setRoom] = useState<string>("");
   const [showChats, setShowChats] = useState<boolean>(false);
 
