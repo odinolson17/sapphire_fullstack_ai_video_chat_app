@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from "recoil";
-import { userStore } from '../../store/user/userStore';
+import { userStore, userEmailStore } from '../../store/user/userStore';
 import { useState } from 'react';
 import './styles/signup.css';
 
@@ -13,6 +13,7 @@ function Signup () {
   const [secondPassword, setSecondPassword] = useState<string>("");
   // holds the store
   const [, setCurrentUser] = useRecoilState(userStore);
+  const [, setCurrentUsersEmail] = useRecoilState(userEmailStore);
 
   const createUser = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,6 +33,7 @@ function Signup () {
         // success
         if (response) {
           setCurrentUser(name);
+          setCurrentUsersEmail(email);
           navigate('/home');
         }
         // failed
@@ -94,6 +96,7 @@ function Signup () {
                     className="signininput"
                     type="password"
                     value={password}
+                    minLength={8}
                     autoComplete='on'
                     onChange={(e) => setPassword(e.target.value)}
                     required={true}
@@ -108,6 +111,7 @@ function Signup () {
                 <input
                   className="signininput" 
                   type="password"
+                  minLength={8}
                   value={secondPassword}
                   autoComplete='on'
                   onChange={(e) => setSecondPassword(e.target.value)}

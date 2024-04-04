@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from "recoil";
-import { userStore } from '../../store/user/userStore';
+import { userStore, userEmailStore } from '../../store/user/userStore';
 import { useState } from 'react';
 import './styles/signin.css';
 
@@ -11,6 +11,7 @@ function Signin () {
   const [enteredPassword, setEnteredPassword] = useState<string>("");
   // holds the store
   const [, setCurrentUser] = useRecoilState(userStore);
+  const [, setCurrentUsersEmail] = useRecoilState(userEmailStore);
 
   const attemptSignin = (e: React.FormEvent) => {
     // so the form doesn't refresh itself
@@ -28,9 +29,11 @@ function Signin () {
           });
           const response = await request.json();
           const usersName: string = response.name;
+          const usersEmail: string = response.email;
           if (response.password === enteredPassword) {
             // adding the user to the store
             setCurrentUser(usersName);
+            setCurrentUsersEmail(usersEmail);
             // redirect
             navigate('/home');
           } else {

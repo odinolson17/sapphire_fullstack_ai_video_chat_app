@@ -1,24 +1,28 @@
+import { addFriendToList, addUserToFriendsList } from './functions/addFriendToList';
+import { randomID } from '../../../functions/randomID';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { userStore } from '../../../store/user/userStore';
+import { userStore, userEmailStore } from '../../../store/user/userStore';
 import './style.css';
 
 function FriendSearchInput () {
   const [currSearch, setCurrSearch] = useState<string>("");
   const [waiting, setWaiting] = useState<any>([]);
   const [currUserName] = useRecoilState(userStore);
+  const [currUserEmail] = useRecoilState(userEmailStore);
+  const roomid: string = randomID();
 
   const searchForFriends = async (e: React.FormEvent, currValue: string) => {
     e.preventDefault();
-    const request = await fetch("api/userRouter/searchForFriends", {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        currentSearch: currValue
-      })
-    });
-    const response = await request.json();
-    if (response) setWaiting(response);
+      const request = await fetch("api/userRouter/searchForFriends", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          currentSearch: currValue
+        })
+      });
+      const response = await request.json();
+      if (response) setWaiting(response);
   };
 
   return (
@@ -34,7 +38,8 @@ function FriendSearchInput () {
       </form>
       {currSearch !== "" && waiting.length > 0 && (
         <div>
-          {waiting.filter((o: any) => o.name !== currUserName).map((options: any) => (
+          {waiting.filter((o: any) => o.name !== currUserName)
+          .map((options: any) => (
             <div 
               key={options._id}
               className='card'
@@ -42,7 +47,10 @@ function FriendSearchInput () {
               {options.name}
               <br />
               {options.email}
-              <button>
+              <button onClick={() => {
+                addFriendToList(options.email, options.name, currUserEmail, roomid);
+                addUserToFriendsList(options.email, currUserEmail, currUserName, roomid);
+              }}>
                 Add
               </button>
             </div>
