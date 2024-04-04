@@ -1,4 +1,4 @@
-import { addFriendToList, addUserToFriendsList } from './functions/addFriendToList';
+import { addFriendToList } from './functions/addFriendToList';
 import { randomID } from '../../../functions/randomID';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
@@ -49,7 +49,7 @@ function FriendSearchInput () {
               {options.email}
               <button onClick={() => {
                 addFriendToList(options.email, options.name, currUserEmail, roomid);
-                addUserToFriendsList(options.email, currUserEmail, currUserName, roomid);
+                addFriendToList(currUserEmail, currUserName, options.email, roomid);
               }}>
                 Add
               </button>

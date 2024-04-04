@@ -11,7 +11,7 @@ export async function searchAllFriends (req: Request, res: Response, next: NextF
   } catch (err) {
     console.log({err});
     return next({
-      log: 'There was an error looking for users.',
+      log: "There was an error looking for users.",
       message: "There was an error looking for users."
     })
   }
@@ -25,7 +25,7 @@ export async function addFriendToList (req: Request, _res: Response, next: NextF
   } catch (err) {
     console.log({err});
     return next({
-      log: 'There was an error adding friends as contacts.',
+      log: "There was an error adding friends as contacts.",
       message: "There was an error adding friends as contacts."
     })
   }
