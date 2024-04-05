@@ -1,5 +1,6 @@
 import { addFriendToList } from './functions/addFriendToList';
 import { randomID } from '../../../functions/randomID';
+import { statusStore } from '../../../store/status/statusStore';
 import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userStore, userEmailStore } from '../../../store/user/userStore';
@@ -10,6 +11,7 @@ function FriendSearchInput () {
   const [waiting, setWaiting] = useState<any>([]);
   const [currUserName] = useRecoilState(userStore);
   const [currUserEmail] = useRecoilState(userEmailStore);
+  const [, setUpdatedStatus] = useRecoilState(statusStore);
   const roomid: string = randomID();
 
   const searchForFriends = async (e: React.FormEvent, currValue: string) => {
@@ -50,6 +52,7 @@ function FriendSearchInput () {
               <button onClick={() => {
                 addFriendToList(options.email, options.name, currUserEmail, roomid);
                 addFriendToList(currUserEmail, currUserName, options.email, roomid);
+                setUpdatedStatus(true);
               }}>
                 Add
               </button>

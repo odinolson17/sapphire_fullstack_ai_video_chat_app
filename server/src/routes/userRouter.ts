@@ -9,5 +9,5 @@ userRouter.post("/searchForFriends", searchAllFriends, (_req: Request, res: Resp
 });
 
 userRouter.patch("/addFriendToList", addFriendToList, (_req: Request, res: Response) => {
-  res.status(200);
+  res.sendStatus(200);
 })

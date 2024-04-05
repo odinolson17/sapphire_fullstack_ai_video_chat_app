@@ -19,8 +19,17 @@ export async function searchAllFriends (req: Request, res: Response, next: NextF
 
 export async function addFriendToList (req: Request, _res: Response, next: NextFunction) {
   try {
-    console.log('here');
-    console.log(req.body);
+    const toFind = {"email": req.body.currentUser};
+    const toUpdate = {
+      "$push": {
+        "textchats": {
+          "friendsname": req.body.friendsname,
+          "friendsemail": req.body.friendsemail,
+          "roomid": req.body.roomid
+        }
+      }
+    };
+    await User.findOneAndUpdate(toFind, toUpdate);
     return next();
   } catch (err) {
     console.log({err});
