@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { statusStore } from '../../store/status/statusStore';
 import { useRecoilState } from "recoil";
 import { userStore, userEmailStore } from '../../store/user/userStore';
 import { useState } from 'react';
@@ -12,6 +13,7 @@ function Signin () {
   // holds the store
   const [, setCurrentUser] = useRecoilState(userStore);
   const [, setCurrentUsersEmail] = useRecoilState(userEmailStore);
+  const [, setCurrContactsStatus] = useRecoilState(statusStore);
 
   const attemptSignin = (e: React.FormEvent) => {
     // so the form doesn't refresh itself
@@ -34,6 +36,9 @@ function Signin () {
             // adding the user to the store
             setCurrentUser(usersName);
             setCurrentUsersEmail(usersEmail);
+            if (response.textchats.length > 0) {
+              setCurrContactsStatus(true);
+            }
             // redirect
             navigate('/home');
           } else {
