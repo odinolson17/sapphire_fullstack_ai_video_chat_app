@@ -1,13 +1,18 @@
-import { statusStore } from '../../../store/status/statusStore';
+import { callStore } from '../../../store/call/callStore';
+import { statusStore, triggerTextStore } from '../../../store/status/statusStore';
 import { handleClick } from './functions/handleClick';
 import { useRecoilState } from 'recoil';
-import { userEmailStore } from '../../../store/user/userStore';
+import { userStore, userEmailStore } from '../../../store/user/userStore';
 import { useState } from 'react';
+import { whoToCall } from './functions/whoToCall';
 
 function Contacts () {
   const [contacts, setContacts] = useState<any>([]);
   const [currStatus, setCurrStatus] = useRecoilState(statusStore);
   const [currUserEmail] = useRecoilState(userEmailStore);
+  const [, setWhoToCall] = useRecoilState(callStore);
+  const [, setTriggerText] = useRecoilState(triggerTextStore);
+  const [currUser] = useRecoilState(userStore);
 
   if (currStatus) {
     const runHandleClick = async () => {
@@ -34,7 +39,15 @@ function Contacts () {
               key={person._id}
             >
               {person.friendsname}
-              <button>Call</button>
+              <button
+                onClick={() => {
+                  const request = whoToCall(currUser, person.roomid);
+                  setWhoToCall(request);
+                  setTriggerText(true);
+                }}
+              >
+                Call
+              </button>
             </div>
           ))}
         </div>

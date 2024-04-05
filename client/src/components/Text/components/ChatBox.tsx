@@ -1,3 +1,4 @@
+import { randomIDwithLetters } from '../../../functions/randomID';
 import { Socket } from 'socket.io-client'
 import { useEffect, useState } from 'react';
 
@@ -12,6 +13,7 @@ interface messageDataObj {
   name: string;
   message: string;
   time: string;
+  chatID: string;
 }
 
 function ChatBox ({ socket, name, room }: Props) {
@@ -25,7 +27,8 @@ function ChatBox ({ socket, name, room }: Props) {
         room: room,
         name: name,
         message: currMessage,
-        time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes()
+        time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
+        chatID: randomIDwithLetters()
       }
 
       await socket.emit("send_message", messageData);
@@ -48,11 +51,13 @@ function ChatBox ({ socket, name, room }: Props) {
       </div>
       <div>
         {messageList.map((messageContent) => (
-          <>
+          <div
+            key={messageContent.chatID}
+          >
             <p>{messageContent.name}</p>
             <p>{messageContent.message}</p>
             <p>{messageContent.time}</p>
-          </>
+          </div>
         ))}
       </div>
       <div>

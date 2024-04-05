@@ -1,40 +1,25 @@
+import { callStore } from '../../store/call/callStore';
 import ChatBox from './components/ChatBox';
 import io from 'socket.io-client';
-import { useRecoilState } from 'recoil';
-import { userStore } from '../../store/user/userStore';
-import { useState } from 'react';
+import { triggerTextStore } from '../../store/status/statusStore';
+import { useRecoilValue } from 'recoil';
 
 const socket = io('http://localhost:4000');
 
 function Text () {
-  const [room, setRoom] = useState<string>("");
-  const [showChats, setShowChats] = useState<boolean>(false);
-  const [name] = useRecoilState(userStore);
+  const activeCall = useRecoilValue(callStore);
+  const triggerChat = useRecoilValue(triggerTextStore);
 
-  const joinRoom = () => {
-    if (room !== "") {
-      socket.emit("join_room", room)
-    }
-    setShowChats(true);
+  if (triggerChat) {
+    socket.emit("join_room", activeCall.roomid)
   };
 
   return (
-    <>
-    {showChats 
-    ? (
-      <ChatBox socket={socket} name={name} room={room} />
-    ) 
-    : (
-      <>
-      <h3>Join a Chat Room</h3>
-      <input 
-        onChange={(e) => setRoom(e.target.value)}
-      />
-      <br />
-      <button onClick={joinRoom}>Join a Room</button>
-      </>
-    )}
-    </>
+    <ChatBox 
+      socket={socket} 
+      name={activeCall.name!} 
+      room={activeCall.roomid!} 
+    />
   )
 }
 
