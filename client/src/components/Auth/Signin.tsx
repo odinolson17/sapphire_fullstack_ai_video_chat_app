@@ -83,6 +83,11 @@ function Signin () {
                   autoComplete='on'
                   value={enteredPassword}
                   onChange={(e) => setEnteredPassword(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      attemptSignin(e);
+                    }
+                  }}
                 />
               </div>
               <br />

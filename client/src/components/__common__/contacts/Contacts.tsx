@@ -1,6 +1,9 @@
 import { callStore } from '../../../store/call/callStore';
-import { statusStore, triggerTextStore } from '../../../store/status/statusStore';
 import { handleClick } from './functions/handleClick';
+import { 
+  statusStore, 
+  triggerTextStore 
+} from '../../../store/status/statusStore';
 import { useRecoilState } from 'recoil';
 import { userStore, userEmailStore } from '../../../store/user/userStore';
 import { useState } from 'react';

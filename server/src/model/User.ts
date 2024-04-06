@@ -17,6 +17,7 @@ interface Videochats {
     name: string;
     time: string;
     message: string;
+    chatid: string;
   }];
   roomid: string;
 }
@@ -28,6 +29,7 @@ interface Textchats {
     name: string;
     time: string;
     message: string;
+    chatid: string;
   }];
   roomid: string;
 }
@@ -67,7 +69,8 @@ const UserSchema: Schema = new Schema<User>({
     chats: [{
       name: String,
       time: String,
-      message: String
+      message: String,
+      chatid: String
     }],
     roomid: String
   }],

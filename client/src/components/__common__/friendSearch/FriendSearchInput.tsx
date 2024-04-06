@@ -16,20 +16,21 @@ function FriendSearchInput () {
 
   const searchForFriends = async (e: React.FormEvent, currValue: string) => {
     e.preventDefault();
-      const request = await fetch("api/userRouter/searchForFriends", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          currentSearch: currValue
+    const request = await fetch("api/userRouter/searchForFriends", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        currentSearch: currValue
         })
-      });
-      const response = await request.json();
-      if (response) setWaiting(response);
+    });
+    const response = await request.json();
+    if (response) setWaiting(response);
   };
 
   return (
     <>
       <form>
+        <h3>Add Contacts</h3>
         <input 
           value={currSearch}
           onChange={(e) => {
@@ -54,17 +55,17 @@ function FriendSearchInput () {
                 addFriendToList(currUserEmail, currUserName, options.email, roomid);
                 setUpdatedStatus(true);
               }}>
-                Add
+                +
               </button>
             </div>
           ))}
         </div>
       )}
       {currSearch !== "" && waiting.length === 0 && (
-        <div>None</div>
+        <div>Not Found</div>
       )}
       {currSearch === "" && (
-        <div>Waiting...</div>
+        <div>...</div>
       )}
     </>
   )

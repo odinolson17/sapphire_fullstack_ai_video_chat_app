@@ -5,6 +5,7 @@ import TopBar from '../__common__/dashboard/TopBar';
 
 import { callStore } from '../../store/call/callStore';
 import { useRecoilValue } from 'recoil';
+import './style.css';
 
 function Dashboard () {
   const activeCall = useRecoilValue(callStore);
@@ -12,16 +13,16 @@ function Dashboard () {
   return (
     <>
       <TopBar />
-      {!activeCall.name && !activeCall.roomid && (
-        <>
-          <FriendSearchInput />
-          <br /><br /><br />
-          <Contacts />
-        </>
-      )}
-      {activeCall.name && activeCall.roomid && (
-        <Text />
-      )}
+        {!activeCall.name && !activeCall.roomid && (
+          <>
+            <FriendSearchInput />
+            <br /><br /><br />
+            <Contacts />
+          </>
+        )}
+        {activeCall.name && activeCall.roomid && (
+          <Text />
+        )}
     </>
   )
 }
