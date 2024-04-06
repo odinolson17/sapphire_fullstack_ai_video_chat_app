@@ -1,10 +1,11 @@
-import { useRecoilState } from 'recoil';
+import DropDownSettings from './components/DropDownSettings';
+import { useRecoilValue } from 'recoil';
 import { userStore } from '../../../store/user/userStore';
 import './style.css'
 
 function TopBar () {
 
-  const [name] = useRecoilState(userStore);
+  const name = useRecoilValue(userStore);
 
   return (
     <>
@@ -13,7 +14,7 @@ function TopBar () {
           {name !== 'mock-user' ? `Welcome ${name}!` : "Welcome user!"}
         </div>
         <div>
-          <button>Settings</button>
+          <DropDownSettings />
         </div>
       </div>
     </>

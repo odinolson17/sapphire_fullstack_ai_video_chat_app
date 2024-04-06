@@ -13,16 +13,16 @@ function Dashboard () {
   return (
     <>
       <TopBar />
-        {!activeCall.name && !activeCall.roomid && (
-          <>
-            <FriendSearchInput />
-            <br /><br /><br />
-            <Contacts />
-          </>
-        )}
-        {activeCall.name && activeCall.roomid && (
-          <Text />
-        )}
+      {!activeCall.name && !activeCall.roomid && (
+        <>
+          <FriendSearchInput />
+          <br /><br /><br />
+          <Contacts />
+        </>
+      )}
+      {activeCall.name && activeCall.roomid && (
+        <Text />
+      )}
     </>
   )
 }
