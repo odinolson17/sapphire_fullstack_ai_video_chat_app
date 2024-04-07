@@ -7,7 +7,7 @@ interface ReturnValue {
 }
 
 export const handleClick = async (email: string): Promise<ReturnValue> => {
-  const request = await fetch("api/loginRouter/findUser", {
+  const request = await fetch("api/loginRouter/findContact", {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

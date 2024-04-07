@@ -10,9 +10,9 @@ interface Favsongs {
   title: string;
 }
 
-interface Videochats {
-  friendsname: string;
-  friendsemail: string;
+interface Groupchats {
+  friendsname: [string];
+  friendsemail: [string];
   chats?: [{
     name: string;
     time: string;
@@ -40,9 +40,8 @@ interface User {
   password: string;
   profilepic?: string;
   textchats?: Textchats[];
-  videochats?: Videochats[];
+  groupchats?: Groupchats[];
   favsongs?: Favsongs[];
-  contacts?: Contacts[];
 }
 
 const UserSchema: Schema = new Schema<User>({
@@ -74,7 +73,7 @@ const UserSchema: Schema = new Schema<User>({
     }],
     roomid: String
   }],
-  videochats: [{
+  groupchats: [{
     friendsname: String,
     friendsemail: String,
     chats: [{
@@ -88,10 +87,6 @@ const UserSchema: Schema = new Schema<User>({
     artist: String,
     title: String
   }],
-  contacts: [{
-    name: String,
-    email: String
-  }]
 });
 
 const User = mongoose.model("User", UserSchema);

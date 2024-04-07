@@ -31,18 +31,19 @@ function Signin () {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              email: enteredEmail
+              email: enteredEmail,
+              password: enteredPassword
             })
           });
           const response = await request.json();
-          const usersName: string = response.name;
-          const usersEmail: string = response.email;
-          if (response.password === enteredPassword) {
+          if (response.ifmatch) {
+            const usersName: string = response.query.name;
+            const usersEmail: string = response.query.email;
             // adding the user to the store
             setCurrentUser(usersName);
             setCurrentUsersEmail(usersEmail);
-            setProfilePic(response.profilepic);
-            if (response.textchats.length > 0) {
+            setProfilePic(response.query.profilepic);
+            if (response.query.textchats.length > 0) {
               setCurrContactsStatus(true);
             }
             // redirect

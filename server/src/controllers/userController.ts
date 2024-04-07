@@ -1,3 +1,4 @@
+import { checkForContact } from './functions/checkForContact';
 import { Request, Response, NextFunction } from 'express';
 import { User } from '../model/User';
 
@@ -29,8 +30,18 @@ export async function addFriendToList (req: Request, _res: Response, next: NextF
         }
       }
     };
-    await User.findOneAndUpdate(toFind, toUpdate);
-    return next();
+    const checkingIfAlreadyExist: any = await User.findOne(toFind);
+    if (checkingIfAlreadyExist) {
+      const result = checkForContact(checkingIfAlreadyExist, req.body.friendsemail);
+      if (result) {
+        return next();
+      } else {
+        await User.findOneAndUpdate(toFind, toUpdate);
+        return next();
+      }
+    } else {
+      return next();
+    }
   } catch (err) {
     console.log({err});
     return next({

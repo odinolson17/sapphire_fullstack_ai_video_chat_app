@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 export const userRouter = Router();
-import { 
+import {
   addFriendToList,
   addProfilePicture,
-  searchAllFriends, 
+  searchAllFriends,
 } from '../controllers/userController';
 
 userRouter.post("/searchForFriends", searchAllFriends, (_req: Request, res: Response) => {
