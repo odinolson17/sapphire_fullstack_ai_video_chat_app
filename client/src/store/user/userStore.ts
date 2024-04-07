@@ -8,4 +8,9 @@ export const userStore = atom({
 export const userEmailStore = atom({
   key: "userEmailStore",
   default: "mock-email"
-})
+});
+
+export const userProfilePicStore = atom({
+  key: "userProfilePicStore",
+  default: "NONE"
+});

@@ -1,8 +1,10 @@
 import { Router, Request, Response } from 'express';
-
 export const userRouter = Router();
-
-import { searchAllFriends, addFriendToList } from '../controllers/userController';
+import { 
+  addFriendToList,
+  addProfilePicture,
+  searchAllFriends, 
+} from '../controllers/userController';
 
 userRouter.post("/searchForFriends", searchAllFriends, (_req: Request, res: Response) => {
   res.status(200).json(res.locals.friends);
@@ -11,3 +13,7 @@ userRouter.post("/searchForFriends", searchAllFriends, (_req: Request, res: Resp
 userRouter.patch("/addFriendToList", addFriendToList, (_req: Request, res: Response) => {
   res.sendStatus(200);
 })
+
+userRouter.patch("/addProfilePicture", addProfilePicture, (_req: Request, res: Response) => {
+  res.sendStatus(200);
+});

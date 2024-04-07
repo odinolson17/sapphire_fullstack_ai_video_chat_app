@@ -39,3 +39,19 @@ export async function addFriendToList (req: Request, _res: Response, next: NextF
     })
   }
 };
+
+export async function addProfilePicture (req: Request, _res: Response, next: NextFunction) {
+  const { url, email } = req.body;
+  try {
+    const toFind = { "email": email };
+    const toUpdate = { "profilepic": url };
+    await User.findOneAndUpdate(toFind, toUpdate);
+    return next();
+  } catch (err) {
+    console.log({err});
+    return next({
+      log: "There was an error adding a profile picture.",
+      message: "There was an error adding a profile picture."
+    })
+  }
+};

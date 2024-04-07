@@ -61,7 +61,7 @@ const UserSchema: Schema = new Schema<User>({
   },
   profilepic: {
     type: String,
-    default: undefined
+    default: 'NONE'
   },
   textchats: [{
     friendsname: String,
