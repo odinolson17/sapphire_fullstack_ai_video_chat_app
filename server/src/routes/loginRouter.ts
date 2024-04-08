@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 export const loginRouter = Router();
-import { 
-  createUser, 
-  findContact, 
-  findUser 
+import {
+  createUser,
+  findContact,
+  findUser
 } from '../controllers/loginController';
 
 loginRouter.post("/createUser", createUser, (_req: Request, res: Response) => {

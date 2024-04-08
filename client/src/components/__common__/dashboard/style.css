@@ -10,3 +10,17 @@
 .drop-down-content {
   position: absolute;
 }
+
+.left-side-top-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.welcome-text {
+  padding-top: 1.45em;
+  padding-right: 1em;
+}
+
+.profile-image {
+  border-radius: 50px;
+}
