@@ -1,5 +1,5 @@
 import DropDownSettings from './components/DropDownSettings';
-import mockPhoto from './components/assets/tyedye.jpg';
+import mockPhoto from '../../../assets/tyedye.jpg';
 import { useRecoilValue } from 'recoil';
 import { userProfilePicStore, userStore } from '../../../store/user/userStore';
 import './style.css'
@@ -17,9 +17,7 @@ function TopBar () {
           {name !== 'mock-user' 
           ?
           <div className='left-side-top-bar'>
-            <div 
-              className='welcome-text'
-            >
+            <div className='welcome-text' >
               {`Welcome ${name} !`}
             </div>
             <img 

@@ -1,16 +1,18 @@
 import { addFriendToList } from './functions/addFriendToList';
+import mockphoto from '../../../assets/tyedye.jpg';
 import { randomID } from '../../../functions/randomID';
 import { statusStore } from '../../../store/status/statusStore';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { userStore, userEmailStore } from '../../../store/user/userStore';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { userStore, userEmailStore, userProfilePicStore } from '../../../store/user/userStore';
 import './style.css';
 
 function FriendSearchInput () {
   const [currSearch, setCurrSearch] = useState<string>("");
   const [waiting, setWaiting] = useState<any>([]);
-  const [currUserName] = useRecoilState(userStore);
-  const [currUserEmail] = useRecoilState(userEmailStore);
+  const currUserName = useRecoilValue(userStore);
+  const currUserEmail = useRecoilValue(userEmailStore);
+  const currUserPicture = useRecoilValue(userProfilePicStore);
   const [, setUpdatedStatus] = useRecoilState(statusStore);
   const roomid: string = randomID();
 
@@ -47,12 +49,22 @@ function FriendSearchInput () {
               key={options._id}
               className='card'
             >
+              <img 
+                src={
+                  options.profilepic === 'NONE'
+                    ? mockphoto
+                    : options.profilepic
+                }
+                alt='profile'
+                height={30}
+                width={30}
+              />
               {options.name}
               <br />
               {options.email}
               <button onClick={() => {
-                addFriendToList(options.email, options.name, currUserEmail, roomid);
-                addFriendToList(currUserEmail, currUserName, options.email, roomid);
+                addFriendToList(options.profilepic, options.email, options.name, currUserEmail, roomid);
+                addFriendToList(currUserPicture, currUserEmail, currUserName, options.email, roomid);
                 setUpdatedStatus(true);
               }}>
                 +

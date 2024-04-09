@@ -1,10 +1,8 @@
 import { callStore } from '../../../store/call/callStore';
 import { handleClick } from './functions/handleClick';
-import { 
-  statusStore, 
-  triggerTextStore 
-} from '../../../store/status/statusStore';
-import { useRecoilState } from 'recoil';
+import mockphoto from '../../../assets/tyedye.jpg';
+import { statusStore, triggerTextStore } from '../../../store/status/statusStore';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { userStore, userEmailStore } from '../../../store/user/userStore';
 import { useState } from 'react';
 import { whoToCall } from './functions/whoToCall';
@@ -12,10 +10,10 @@ import { whoToCall } from './functions/whoToCall';
 function Contacts () {
   const [contacts, setContacts] = useState<any>([]);
   const [currStatus, setCurrStatus] = useRecoilState(statusStore);
-  const [currUserEmail] = useRecoilState(userEmailStore);
+  const currUserEmail = useRecoilValue(userEmailStore);
   const [, setWhoToCall] = useRecoilState(callStore);
   const [, setTriggerText] = useRecoilState(triggerTextStore);
-  const [currUser] = useRecoilState(userStore);
+  const currUser = useRecoilValue(userStore);
 
   if (currStatus) {
     const runHandleClick = async () => {
@@ -38,9 +36,17 @@ function Contacts () {
       {contacts.length > 0 && (
         <div>
           {contacts.map((person: any) => (
-            <div
-              key={person._id}
-            >
+            <div key={person._id}>
+              <img 
+                src={
+                  person.friendspicture === 'NONE'
+                    ? mockphoto
+                    : person.friendspicture
+                }
+                alt='profile'
+                height={30}
+                width={30}
+              />
               {person.friendsname}
               <button
                 onClick={() => {

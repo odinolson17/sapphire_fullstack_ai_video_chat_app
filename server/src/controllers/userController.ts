@@ -26,6 +26,7 @@ export async function addFriendToList (req: Request, _res: Response, next: NextF
         "textchats": {
           "friendsname": req.body.friendsname,
           "friendsemail": req.body.friendsemail,
+          "friendspicture": req.body.profilepic,
           "roomid": req.body.roomid
         }
       }

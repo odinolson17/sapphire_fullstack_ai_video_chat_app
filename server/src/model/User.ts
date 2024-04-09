@@ -25,6 +25,7 @@ interface Groupchats {
 interface Textchats {
   friendsname: string;
   friendsemail: string;
+  friendspicture: string;
   chats?: [{
     name: string;
     time: string;
@@ -65,6 +66,10 @@ const UserSchema: Schema = new Schema<User>({
   textchats: [{
     friendsname: String,
     friendsemail: String,
+    friendspicture: {
+      type: String,
+      default: 'NONE'
+    },
     chats: [{
       name: String,
       time: String,
