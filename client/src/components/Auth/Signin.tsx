@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { nameFormatting } from '../../functions/nameFormatting';
 import { statusStore } from '../../store/status/statusStore';
 import { useRecoilState } from "recoil";
 import { 
@@ -36,8 +37,9 @@ function Signin () {
             })
           });
           const response = await request.json();
+
           if (response.ifmatch) {
-            const usersName: string = response.query.name;
+            const usersName: string = await nameFormatting(response.query.name);
             const usersEmail: string = response.query.email;
             // adding the user to the store
             setCurrentUser(usersName);

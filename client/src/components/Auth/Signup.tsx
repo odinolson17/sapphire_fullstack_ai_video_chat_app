@@ -1,3 +1,4 @@
+import { nameFormatting } from '../../functions/nameFormatting';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from "recoil";
 import { userStore, userEmailStore } from '../../store/user/userStore';
@@ -24,20 +25,23 @@ function Signup () {
           method: "POST",
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            name: name,
-            email: email,
+            name: name.toLowerCase().trim(),
+            email: email.trim(),
             password: password
           })
         });
         const response = await request.json();
         // success
         if (response) {
-          setCurrentUser(name);
-          setCurrentUsersEmail(email);
+          const insertName = await nameFormatting(name.toLowerCase().trim());
+          setCurrentUser(insertName);
+          setCurrentUsersEmail(email.trim());
           navigate('/home');
         }
         // failed
-        else navigate('/failedsignup');
+        else {
+          navigate('/failedsignup');
+        }
       } catch {
         // failed
         navigate('/failedsignup');

@@ -1,7 +1,6 @@
 import { callStore } from '../../../store/call/callStore';
 import { getTime } from '../../../functions/getTime';
 import { randomIDwithLetters } from '../../../functions/randomID';
-// import ScrollableFeed from 'react-scrollable-feed';
 import { Socket } from 'socket.io-client'
 import { statusStore, triggerTextStore } from '../../../store/status/statusStore';
 import { useEffect, useState, useRef } from 'react';
@@ -87,8 +86,11 @@ function ChatBox ({ socket, name, room }: Props) {
               id={name === messageContent.name ? 'self' : 'other'}
               key={messageContent.chatID}
             >
+
               <div className='split-content'>
-                <div className='text-name'><strong>{messageContent.name}</strong></div>
+                <div className='text-name'>
+                  <strong>{messageContent.name}</strong>
+                </div>
                 <div className='text-time'>{messageContent.time}</div>
               </div>
               <div className='text-message-component'>

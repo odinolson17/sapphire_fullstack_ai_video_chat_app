@@ -43,8 +43,9 @@ function FriendSearchInput () {
       </form>
       {currSearch !== "" && waiting.length > 0 && (
         <div>
-          {waiting.filter((o: any) => o.name !== currUserName)
-          .map((options: any) => (
+          {waiting
+            .filter((o: any) => o.name !== currUserName)
+            .map((options: any) => (
             <div 
               key={options._id}
               className='card'
