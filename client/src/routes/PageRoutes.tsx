@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import { userStore } from '../store/user/userStore';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 
 import Dashboard from '../components/Dashboard/Dashboard';
 import FailedSignin from '../components/Auth/failedLogins/FailedSignin';
@@ -12,7 +12,7 @@ import Signup from '../components/Auth/Signup';
 
 function PageRoutes () {
 
-  const [protectedPathsValue] = useRecoilState(userStore);
+  const protectedPathsValue = useRecoilValue(userStore);
 
    return (
     <>
