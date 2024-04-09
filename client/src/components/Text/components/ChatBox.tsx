@@ -18,7 +18,7 @@ interface messageDataObj {
   name: string;
   message: string;
   time: string;
-  chatID: string;
+  chatid: string;
 }
 
 function ChatBox ({ socket, name, room }: Props) {
@@ -38,7 +38,7 @@ function ChatBox ({ socket, name, room }: Props) {
         name: name,
         message: currMessage,
         time: getTime(),
-        chatID: randomIDwithLetters()
+        chatid: randomIDwithLetters()
       }
 
       await socket.emit("send_message", messageData);
@@ -84,7 +84,7 @@ function ChatBox ({ socket, name, room }: Props) {
             <div
               className='message-component'
               id={name === messageContent.name ? 'self' : 'other'}
-              key={messageContent.chatID}
+              key={messageContent.chatid}
             >
 
               <div className='split-content'>
