@@ -33,7 +33,7 @@ function Signup () {
         const response = await request.json();
         // success
         if (response) {
-          const insertName = await nameFormatting(name.toLowerCase().trim());
+          const insertName = nameFormatting(name.toLowerCase().trim());
           setCurrentUser(insertName);
           setCurrentUsersEmail(email.trim());
           navigate('/home');

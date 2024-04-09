@@ -1,4 +1,4 @@
-export const nameFormatting = async (name: string) => {
+export const nameFormatting = (name: string): string => {
   const newName: string[] = name.split(' ');
   if (newName.length === 1) {
     const splitName: string[] = newName[0].split('');

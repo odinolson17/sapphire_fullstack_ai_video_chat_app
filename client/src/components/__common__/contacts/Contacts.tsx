@@ -1,6 +1,7 @@
 import { callStore } from '../../../store/call/callStore';
 import { handleClick } from './functions/handleClick';
 import mockphoto from '../../../assets/tyedye.jpg';
+import { nameFormatting } from '../../../functions/nameFormatting';
 import { statusStore, triggerTextStore } from '../../../store/status/statusStore';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userStore, userEmailStore } from '../../../store/user/userStore';
@@ -47,7 +48,7 @@ function Contacts () {
                 height={30}
                 width={30}
               />
-              {person.friendsname}
+              {nameFormatting(person.friendsname)}
               <button
                 onClick={() => {
                   const request = whoToCall(currUser, person.roomid);

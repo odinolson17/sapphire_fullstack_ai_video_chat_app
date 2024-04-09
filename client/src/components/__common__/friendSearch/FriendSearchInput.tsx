@@ -1,5 +1,6 @@
 import { addFriendToList } from './functions/addFriendToList';
 import mockphoto from '../../../assets/tyedye.jpg';
+import { nameFormatting } from '../../../functions/nameFormatting';
 import { randomID } from '../../../functions/randomID';
 import { statusStore } from '../../../store/status/statusStore';
 import { useState } from 'react';
@@ -26,6 +27,7 @@ function FriendSearchInput () {
         })
     });
     const response = await request.json();
+    console.log(response)
     if (response) setWaiting(response);
   };
 
@@ -60,7 +62,7 @@ function FriendSearchInput () {
                 height={30}
                 width={30}
               />
-              {options.name}
+              {nameFormatting(options.name)}
               <br />
               {options.email}
               <button onClick={() => {

@@ -39,7 +39,7 @@ function Signin () {
           const response = await request.json();
 
           if (response.ifmatch) {
-            const usersName: string = await nameFormatting(response.query.name);
+            const usersName: string = nameFormatting(response.query.name);
             const usersEmail: string = response.query.email;
             // adding the user to the store
             setCurrentUser(usersName);
