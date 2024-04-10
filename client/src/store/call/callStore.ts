@@ -7,10 +7,15 @@ interface ValueType {
 
 const value: ValueType = {
   name: undefined,
-  roomid: undefined
+  roomid: undefined,
 };
 
 export const callStore = atom({
   key: "callStore",
   default: value
+});
+
+export const callSingularContactProfilePic = atom<string | undefined>({
+  key: "callSingularContactProfilePic",
+  default: undefined
 });

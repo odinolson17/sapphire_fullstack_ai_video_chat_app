@@ -1,4 +1,7 @@
-import { callStore } from '../../../store/call/callStore';
+import { 
+  callStore, 
+  callSingularContactProfilePic 
+} from '../../../store/call/callStore';
 import { handleClick } from './functions/handleClick';
 import mockphoto from '../../../assets/tyedye.jpg';
 import { nameFormatting } from '../../../functions/nameFormatting';
@@ -14,6 +17,7 @@ function Contacts () {
   const currUserEmail = useRecoilValue(userEmailStore);
   const [, setWhoToCall] = useRecoilState(callStore);
   const [, setTriggerText] = useRecoilState(triggerTextStore);
+  const [, setFriendPhoto] = useRecoilState(callSingularContactProfilePic)
   const currUser = useRecoilValue(userStore);
 
   if (currStatus) {
@@ -54,6 +58,7 @@ function Contacts () {
                   const request = whoToCall(currUser, person.roomid);
                   setWhoToCall(request);
                   setTriggerText(true);
+                  setFriendPhoto(person.friendspicture);
                 }}
               >
                 Call

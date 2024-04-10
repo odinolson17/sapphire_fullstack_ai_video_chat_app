@@ -1,10 +1,15 @@
-import { callStore } from '../../../store/call/callStore';
+import { 
+  callStore,
+  callSingularContactProfilePic
+} from '../../../store/call/callStore';
 import { getTime } from '../../../functions/getTime';
+import mockphoto from '../../../assets/tyedye.jpg';
 import { randomIDwithLetters } from '../../../functions/randomID';
 import { Socket } from 'socket.io-client'
 import { statusStore, triggerTextStore } from '../../../store/status/statusStore';
 import { useEffect, useState, useRef } from 'react';
-import { useRecoilState } from 'recoil';
+import { userProfilePicStore } from '../../../store/user/userStore';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import './style.css';
 
 interface Props {
@@ -26,6 +31,8 @@ function ChatBox ({ socket, name, room }: Props) {
   const [, setEndCall] = useRecoilState(callStore);
   const [, setNotActiveCall] = useRecoilState(triggerTextStore);
   const [, setCurrContactsStatus] = useRecoilState(statusStore);
+  const [friendsPhoto, setFriendPhoto] = useRecoilState(callSingularContactProfilePic);
+  const currUserPhoto = useRecoilValue(userProfilePicStore);
 
   const [currMessage, setCurrMessage] = useState<string>("");
   const [messageList, setMessageList] = useState<messageDataObj[]>([]);
@@ -75,6 +82,7 @@ function ChatBox ({ socket, name, room }: Props) {
           roomid: undefined
         });
         setCurrContactsStatus(true);
+        setFriendPhoto(undefined);
       }}>
         Leave Chat
       </button>
@@ -86,9 +94,22 @@ function ChatBox ({ socket, name, room }: Props) {
               id={name === messageContent.name ? 'self' : 'other'}
               key={messageContent.chatid}
             >
-
               <div className='split-content'>
                 <div className='text-name'>
+                  <img 
+                    src={
+                      name === messageContent.name
+                        ? currUserPhoto === 'NONE'
+                          ? mockphoto
+                          : currUserPhoto
+                        : !friendsPhoto
+                          ? mockphoto
+                          : friendsPhoto
+                    }
+                    alt='profile'
+                    height={30}
+                    width={30}
+                  />
                   <strong>{messageContent.name}</strong>
                 </div>
                 <div className='text-time'>{messageContent.time}</div>
