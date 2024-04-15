@@ -82,7 +82,7 @@ function ChatBox ({ socket, name, room }: Props) {
           roomid: undefined
         });
         setCurrContactsStatus(true);
-        setFriendPhoto(undefined);
+        setFriendPhoto('NONE');
       }}>
         Leave Chat
       </button>
@@ -102,7 +102,7 @@ function ChatBox ({ socket, name, room }: Props) {
                         ? currUserPhoto === 'NONE'
                           ? mockphoto
                           : currUserPhoto
-                        : !friendsPhoto
+                        : friendsPhoto === 'NONE'
                           ? mockphoto
                           : friendsPhoto
                     }

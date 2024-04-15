@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const settingsStore = atom({
+export const settingsStore = atom<string>({
   key: 'settingsStore',
   default: 'ALL'
 })

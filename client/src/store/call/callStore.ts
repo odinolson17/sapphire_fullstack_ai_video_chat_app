@@ -10,12 +10,12 @@ const value: ValueType = {
   roomid: undefined,
 };
 
-export const callStore = atom({
+export const callStore = atom<ValueType>({
   key: "callStore",
   default: value
 });
 
-export const callSingularContactProfilePic = atom<string | undefined>({
+export const callSingularContactProfilePic = atom<string>({
   key: "callSingularContactProfilePic",
-  default: undefined
+  default: 'NONE'
 });

@@ -2,6 +2,7 @@ import Contacts from '../__common__/contacts/Contacts';
 import FriendSearchInput from '../__common__/friendSearch/FriendSearchInput';
 import Text from '../Text/Text';
 import TopBar from '../__common__/dashboard/TopBar';
+import VideoHome from '../Video/VideoHome';
 
 import { callStore } from '../../store/call/callStore';
 import { useRecoilValue } from 'recoil';
@@ -21,7 +22,10 @@ function Dashboard () {
         </>
       )}
       {activeCall.name && activeCall.roomid && (
-        <Text />
+        <>
+          <Text />
+          <VideoHome />
+        </>
       )}
     </>
   )

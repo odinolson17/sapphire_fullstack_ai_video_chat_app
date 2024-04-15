@@ -46,7 +46,7 @@ function FriendSearchInput () {
       {currSearch !== "" && waiting.length > 0 && (
         <div>
           {waiting
-            .filter((o: any) => o.name !== currUserName)
+            .filter((o: any) => o.name !== currUserName.toLowerCase())
             .map((options: any) => (
             <div 
               key={options._id}
