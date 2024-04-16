@@ -15,8 +15,13 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log('Video server is connected!')
+  console.log('Video server is connected!');
 
+  socket.on("join-room", (videoRoomID, userID) => {
+    console.log(`A new user: ${userID} joined room: ${videoRoomID}`);
+    socket.join(videoRoomID);
+    socket.broadcast.to(videoRoomID).emit("user-connected", userID);
+  });
 });
 
 server.listen(port, () => {

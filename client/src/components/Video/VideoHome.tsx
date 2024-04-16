@@ -1,13 +1,20 @@
+import { SocketProvider } from "./provider/socket";
+import { useRecoilState } from "recoil";
 import { useState } from "react";
 import VideoRoom from "./VideoRoom";
+import { videoRoomIdStore } from "../../store/video/videoStore";
 
 function VideoHome () {
 
   const [roomid, setRoomid] = useState<string>('');
   const [makeSwitch, setMakeSwitch] = useState<boolean>(false);
+  const [, setVideoRoomID] = useRecoilState(videoRoomIdStore);
 
   const switchPages = () => {
-    if (roomid && roomid.length > 1) setMakeSwitch(true);
+    if (roomid && roomid.length > 1) {
+      setVideoRoomID(roomid);
+      setMakeSwitch(true);
+    }
   }
 
   return (
@@ -28,7 +35,9 @@ function VideoHome () {
     )}
     {makeSwitch && (
       <>
-        <VideoRoom />
+        <SocketProvider>
+          <VideoRoom />
+        </SocketProvider>
       </>
     )}
     </>

@@ -9,7 +9,7 @@ import io from 'socket.io-client';
 const SocketContext = createContext(null);
 
 export const useVideoSocket = () => {
-  const videoSocket = useContext(SocketContext);
+  const videoSocket: any = useContext(SocketContext);
   return videoSocket;
 };
 
@@ -18,7 +18,7 @@ export const SocketProvider = (props: any) => {
   const [videoSocket, setVideoSocket] = useState<any>(null);
 
   useEffect(() => {
-    const connection = io('http://localhost:4747');
+    const connection: any = io('http://localhost:4747');
     setVideoSocket(connection);
   }, []);
 
