@@ -22,10 +22,10 @@ function Dashboard () {
         </>
       )}
       {activeCall.name && activeCall.roomid && (
-        <>
-          <Text />
+        <div className='text-and-video'>
           <VideoHome />
-        </>
+          <Text />
+        </div>
       )}
     </>
   )

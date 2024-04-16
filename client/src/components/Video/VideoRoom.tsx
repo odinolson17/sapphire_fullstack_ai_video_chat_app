@@ -14,17 +14,14 @@ const VideoRoom = () => {
   useEffect(() => {
     if (!videoSocket || !peer || !stream) return;
     const handleUserConnected = (newUser: string) => {
-      console.log('new User', newUser);
-
       const call = peer.call(newUser, stream);
 
       call.on("stream", (incomingStream: any) => {
-        console.log(`Incoming stream from ${newUser}`);
         setPlayers((prev: any) => ({
           ...prev,
           [newUser]: {
             url: incomingStream,
-            muted: false,
+            muted: true,
             playing: true
           }
         }))
@@ -44,12 +41,11 @@ const VideoRoom = () => {
       call.answer(stream);
 
       call.on("stream", (incomingStream: any) => {
-        console.log(`Incoming stream from ${call.peer}`);
         setPlayers((prev: any) => ({
           ...prev,
           [call.peer]: {
             url: incomingStream,
-            muted: false,
+            muted: true,
             playing: true
           }
         }))
@@ -63,7 +59,7 @@ const VideoRoom = () => {
       ...prev,
       [myPeerID]: {
         url: stream,
-        muted: false,
+        muted: true,
         playing: true
       }
     }))
