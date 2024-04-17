@@ -1,3 +1,4 @@
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { addFriendToList } from './functions/addFriendToList';
 import mockphoto from '../../../assets/tyedye.jpg';
 import { nameFormatting } from '../../../functions/nameFormatting';
@@ -70,7 +71,7 @@ function FriendSearchInput () {
                 addFriendToList(currUserPicture, currUserEmail, currUserName, options.email, roomid);
                 setUpdatedStatus(true);
               }}>
-                +
+                {<AddCircleOutlineOutlinedIcon />}
               </button>
             </div>
           ))}

@@ -6,23 +6,29 @@ import VideoHome from '../Video/VideoHome';
 
 import { callStore } from '../../store/call/callStore';
 import { useRecoilValue } from 'recoil';
+import { videoStore } from '../../store/video/videoStore';
 import './style.css';
 
 function Dashboard () {
   const activeCall = useRecoilValue(callStore);
+  const videoCall = useRecoilValue(videoStore);
 
   return (
     <>
       <TopBar />
       {!activeCall.name && !activeCall.roomid && (
-        <>
-          <FriendSearchInput />
-          <br /><br /><br />
+        <div className='spreading-the-content'>
           <Contacts />
-        </>
+          <FriendSearchInput />
+        </div>
       )}
-      {activeCall.name && activeCall.roomid && (
-        <div className='text-and-video'>
+      {activeCall.name && activeCall.roomid && !videoCall && (
+        <div className='centering-the-content'>
+          <Text />
+        </div>
+      )}
+      {activeCall.name && activeCall.roomid && videoCall && (
+        <div className='centering-the-content'>
           <VideoHome />
           <Text />
         </div>

@@ -1,5 +1,11 @@
-.text-and-video {
+.centering-the-content {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.spreading-the-content {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
 }

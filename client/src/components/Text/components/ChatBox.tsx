@@ -10,6 +10,7 @@ import { statusStore, triggerTextStore } from '../../../store/status/statusStore
 import { useEffect, useState, useRef } from 'react';
 import { userProfilePicStore } from '../../../store/user/userStore';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { videoStore } from '../../../store/video/videoStore';
 import './style.css';
 
 interface Props {
@@ -31,6 +32,7 @@ function ChatBox ({ socket, name, room }: Props) {
   const [, setEndCall] = useRecoilState(callStore);
   const [, setNotActiveCall] = useRecoilState(triggerTextStore);
   const [, setCurrContactsStatus] = useRecoilState(statusStore);
+  const [videoStatus, setVideoStatus] = useRecoilState(videoStore);
   const [friendsPhoto, setFriendPhoto] = useRecoilState(callSingularContactProfilePic);
   const currUserPhoto = useRecoilValue(userProfilePicStore);
 
@@ -83,6 +85,9 @@ function ChatBox ({ socket, name, room }: Props) {
         });
         setCurrContactsStatus(true);
         setFriendPhoto('NONE');
+        if (videoStatus) {
+          setVideoStatus(false);
+        };
       }}>
         Leave Chat
       </button>

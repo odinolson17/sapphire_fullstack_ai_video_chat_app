@@ -21,7 +21,6 @@
   overflow-y: hidden;
   overflow-x: hidden;
   display: flex;
-  display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 25em;
