@@ -1,3 +1,3 @@
 Sapphire!
 
-An AI Video Chat Application soon to be out.
+An AI Video Chat Application soon to be out!
