@@ -1,4 +1,4 @@
-import colors from '../../../__colors__/colors';
+import colors from '../../../../functions/colors';
 import DropDownOptions from './DropDownOptions';
 import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined';
 import { useState } from 'react';

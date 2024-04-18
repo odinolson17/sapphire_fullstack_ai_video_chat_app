@@ -4,12 +4,11 @@ import {
   callSingularContactProfilePic 
 } from '../../../store/call/callStore';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
-import colors from '../../__colors__/colors';
+import colors from '../../../functions/colors';
 import { handleClick } from './functions/handleClick';
 import mockphoto from '../../../assets/tyedye.jpg';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import { nameFormatting } from '../../../functions/nameFormatting';
-import { pink } from '@mui/material/colors';
 import { statusStore, triggerTextStore } from '../../../store/status/statusStore';
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
 import useLocalStorage from 'use-local-storage';
