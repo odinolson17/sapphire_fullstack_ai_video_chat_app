@@ -1,0 +1,80 @@
+:root {
+  --background-center: rgba(13, 1, 7);
+  --background-edges: rgba(179,55,125,0.7);
+  --border: black;
+  --shadow-colors: rgba(179,55,125,0.7);
+  --settings-button: rgb(211, 203, 208);
+  --welcome-text: #fce4ec;
+}
+
+[data-theme='electric-pink'] {
+  --background-center: rgba(13, 1, 7);
+  --background-edges: rgba(179,55,125,0.7);
+  --border: black;
+  --shadow-colors: rgba(179,55,125,0.7);
+  --settings-button: rgb(211, 203, 208);
+  --welcome-text: #fce4ec;
+}
+
+[data-theme='cloud-blue'] {
+  --background-center: rgba(206, 218, 223, 0.7);
+  --background-edges: rgba(65, 120, 138, 0.7);
+  --border: rgba(47, 94, 109, 0.7);
+  --shadow-colors: rgba(23, 87, 108, 0.7);
+  --settings-button: rgb(2, 14, 27);
+  --welcome-text: rgb(2, 14, 27);
+}
+
+[data-theme='purple-haze'] {
+  --background-center: rgb(41, 7, 85);
+  --background-edges: rgb(153, 101, 220);
+  --border: rgb(41, 7, 85);
+  --shadow-colors: rgb(97, 52, 157, 0.7);
+  --settings-button: rgb(237, 227, 250);
+  --welcome-text: rgb(237, 227, 250);
+}
+
+[data-theme='galaxy-black'] {
+  --background-center: black;
+  --background-edges: rgb(22, 56, 156);
+  --border: black;
+  --shadow-colors: rgb(22, 56, 156, 0.7);
+  --settings-button: rgb(224, 229, 242);
+  --welcome-text: rgb(224, 229, 242);
+}
+
+[data-theme='bubblegum-pink'] {
+  --background-center: rgb(211, 121, 196);
+  --background-edges: rgb(236, 212, 233);
+  --border: rgb(184, 100, 170, 0.7);
+  --shadow-colors: rgba(192, 87, 147, 0.7);
+  --settings-button: rgb(211, 203, 208);
+  --welcome-text: rgb(239, 217, 231);
+}
+
+[data-theme='ocean-blue'] {
+  --background-center: rgb(19, 59, 129);
+  --background-edges: rgb(133, 165, 222);
+  --border: rgb(9, 42, 98);
+  --shadow-colors: rgb(9, 42, 98, 0.7);
+  --settings-button: rgb(224, 229, 242);
+  --welcome-text: rgb(224, 229, 242);
+}
+
+[data-theme='ivory-white'] {
+  --background-center: rgb(233, 237, 247);
+  --background-edges: rgb(178, 198, 240);
+  --border: rgb(178, 198, 240);
+  --shadow-colors: rgb(178, 198, 240, 0.7);
+  --settings-button: rgb(62, 67, 80);
+  --welcome-text: rgb(62, 67, 80);
+}
+
+[data-theme='forest-green'] {
+  --background-center: rgb(14, 80, 30);
+  --background-edges: rgb(26, 194, 68);
+  --border: rgb(11, 60, 23);
+  --shadow-colors: rgb(14, 80, 30, 0.7);
+  --settings-button: rgb(220, 238, 224);
+  --welcome-text: rgb(220, 238, 224);
+}

@@ -1,15 +1,17 @@
+@import '../../../globalCSS/global.css';
+
 .contact-component {
   padding: 3em;
 }
 
 .contact-box {
-  border: 2px solid black;
+  border: 2px solid var(--border);
   padding: 2.5em;
   border-radius: 10px;
-  -webkit-box-shadow:0px 0px 58px 0px rgba(179,55,125,0.7);
-  -moz-box-shadow: 0px 0px 58px 0px rgba(179,55,125,0.7);
-  box-shadow: 0px 0px 58px 0px rgba(179,55,125,0.7);
-  background: linear-gradient(to bottom right, rgba(179,55,125,0.7), 2%, rgba(13, 1, 7), 95%, rgba(179,55,125,0.7));
+  -webkit-box-shadow:0px 0px 58px 0px var(--shadow-colors);
+  -moz-box-shadow: 0px 0px 58px 0px var(--shadow-colors);
+  box-shadow: 0px 0px 58px 0px var(--shadow-colors);
+  background: linear-gradient(to bottom right, var(--background-edges), 2%, var(--background-center), 95%, var(--background-edges));
 }
 
 .setting-up-content {
@@ -20,13 +22,13 @@
 }
 
 .contact-name {
-  color: #fce4ec;
+  color: var(--settings-button);
   padding: 0.5em;
 }
 
 .contact-buttons {
   padding-top: 0.85em;
-  color: rgb(211, 203, 208);
+  color: var(--settings-button);
   background: none;
   border: none;
   cursor: pointer;
@@ -39,7 +41,7 @@
 
 .right-contacts-buttons {
   padding-top: 0.85em;
-  color: rgb(211, 203, 208);
+  color: var(--settings-button);
   background: none;
   border: none;
   cursor: pointer;
@@ -48,7 +50,7 @@
 
 .three-dots-button {
   padding-top: 0.85em;
-  color: rgb(211, 203, 208);
+  color: var(--settings-button);
   background: none;
   border: none;
   cursor: pointer;

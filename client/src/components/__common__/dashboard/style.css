@@ -1,14 +1,16 @@
+@import '../../../globalCSS/global.css';
+
 .container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 2em;
-  background: linear-gradient(to bottom left, rgba(179,55,125,0.7), 2%, rgba(13, 1, 7), 95%, rgba(179,55,125,0.7));
+  background: linear-gradient(to bottom left, var(--background-edges), 2%, var(--background-center), 95%, var(--background-edges));
   position: relative;
-  border: 2px solid black;
-  -webkit-box-shadow:0px 0px 58px 0px rgba(179,55,125,0.7);
-  -moz-box-shadow: 0px 0px 58px 0px rgba(179,55,125,0.7);
-  box-shadow: 0px 0px 58px 0px rgba(179,55,125,0.7);
+  border: 2px solid var(--border);
+  -webkit-box-shadow:0px 0px 58px 0px var(--shadow-colors);
+  -moz-box-shadow: 0px 0px 58px 0px var(--shadow-colors);
+  box-shadow: 0px 0px 58px 0px var(--shadow-colors);
   border-radius: 10px;
 }
 
@@ -24,7 +26,7 @@
 .welcome-text {
   padding-top: 1.45em;
   padding-right: 1em;
-  color: #fce4ec;
+  color: var(--welcome-text);
 }
 
 .profile-image {
@@ -33,7 +35,7 @@
 
 .settings-button-component {
   padding-top: 0.85em;
-  color: rgb(211, 203, 208);
+  color: var(--settings-button);
   background: none;
   border: none;
 }

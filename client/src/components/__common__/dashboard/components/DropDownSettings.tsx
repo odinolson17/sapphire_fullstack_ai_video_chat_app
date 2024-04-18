@@ -1,9 +1,12 @@
+import colors from '../../../__colors__/colors';
 import DropDownOptions from './DropDownOptions';
-import { pink } from '@mui/material/colors';
-import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined';import { useState } from 'react';
+import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined';
+import { useState } from 'react';
+import useLocalStorage from 'use-local-storage';
 
 function DropDownSettings () {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [theme] = useLocalStorage('theme', 'electric-pink');
 
   return (
     <div>
@@ -12,7 +15,7 @@ function DropDownSettings () {
         className='settings-button-component'
       >
         {<SettingsSuggestOutlinedIcon 
-          style={{fill: pink[50]}}
+          style={{fill: colors(theme)}}
           fontSize='large'
         />}
       </button>

@@ -4,6 +4,7 @@ import {
   callSingularContactProfilePic 
 } from '../../../store/call/callStore';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
+import colors from '../../__colors__/colors';
 import { handleClick } from './functions/handleClick';
 import mockphoto from '../../../assets/tyedye.jpg';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
@@ -11,6 +12,7 @@ import { nameFormatting } from '../../../functions/nameFormatting';
 import { pink } from '@mui/material/colors';
 import { statusStore, triggerTextStore } from '../../../store/status/statusStore';
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
+import useLocalStorage from 'use-local-storage';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userStore, userEmailStore } from '../../../store/user/userStore';
 import { useState } from 'react';
@@ -27,6 +29,7 @@ function Contacts () {
   const [, setFriendPhoto] = useRecoilState(callSingularContactProfilePic)
   const [, setVideoCall] = useRecoilState(videoStore);
   const currUser = useRecoilValue(userStore);
+  const [theme] = useLocalStorage('theme', 'electric-pink');
 
   if (currStatus) {
     const runHandleClick = async () => {
@@ -38,7 +41,7 @@ function Contacts () {
   }
 
   return (
-    <div className='contact-component'>
+    <div className='contact-component' data-theme={theme}>
       <div className='contact-box'>
         <div className='setting-up-content'>
           <h2 className='contact-name'>Contacts</h2>
@@ -50,7 +53,7 @@ function Contacts () {
             className='contact-buttons'
           >
             {<CachedOutlinedIcon 
-              style={{fill: pink[50]}}
+              style={{fill: colors(theme)}}
               className='refresh-button'
             />}
           </button>
@@ -91,7 +94,7 @@ function Contacts () {
                     className='contact-buttons'
                   >
                     {<CameraAltOutlinedIcon 
-                      style={{fill: pink[50]}}
+                      style={{fill: colors(theme)}}
                       className='icon-grows'
                     />}
                   </button>
@@ -105,7 +108,7 @@ function Contacts () {
                     className='right-contacts-buttons'
                   >
                     {<TextsmsOutlinedIcon 
-                      style={{fill: pink[50]}}
+                      style={{fill: colors(theme)}}
                       className='icon-grows'
                     />}
                   </button>
@@ -113,7 +116,7 @@ function Contacts () {
                     className='three-dots-button'
                   >
                     {<MoreVertOutlinedIcon
-                      style={{fill: pink[50]}}
+                      style={{fill: colors(theme)}}
                       className='icon-grows'
                     />}
                   </button>
