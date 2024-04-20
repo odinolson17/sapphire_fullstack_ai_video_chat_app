@@ -35,6 +35,13 @@
   padding-left: 3em;
 }
 
+.no-background {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding-left: 1em;
+}
+
 .contact-photo {
   border-radius: 50px;
 }
@@ -78,10 +85,11 @@
 .scroll-contacts {
   min-height: 19em;
   max-height: 19em;
+  min-width: 33em;
+  max-width: 33em;
   scroll-behavior: smooth;
   overflow-y: hidden;
   overflow-x: hidden;
-  display: flex;
 }
 
 .scroll-contacts:hover {
@@ -89,7 +97,7 @@
   scroll-behavior: smooth;
 }
 
-.scroll-contacts::-webkit-scrollbar { /* WebKit */
+.scroll-contacts::-webkit-scrollbar {
   width: 0;
   height: 0;
 }

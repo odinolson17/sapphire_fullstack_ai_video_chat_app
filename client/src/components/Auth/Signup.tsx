@@ -78,6 +78,7 @@ function Signup () {
                   autoComplete='on'
                   onChange={(e) => setName(e.target.value)}
                   required={true}
+                  maxLength={20}
                 />
               </div>
               <br />

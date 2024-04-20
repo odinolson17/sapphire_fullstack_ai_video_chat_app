@@ -1,11 +1,12 @@
 import PageRoutes from './routes/PageRoutes';
 import { RecoilRoot } from 'recoil';
-import './App.css';
+import './global.css';
 
 function App() {
+
   return (
     <RecoilRoot>
-      <PageRoutes />
+        <PageRoutes />
     </RecoilRoot>
   );
 }

@@ -1,3 +1,79 @@
+@import '../../../global.css';
+
 .card {
-  background-color: lightcoral;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebyside {
+  display: flex;
+  flex-direction: row;
+}
+
+.images {
+  border-radius: 50px;
+  margin-right: 1em;
+}
+
+.inside-scroll {
+  padding: 2em;
+  min-height: 14em;
+  max-height: 14em;
+  scroll-behavior: smooth;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.inside-scroll:hover {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.inside-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.contact-component {
+  padding: 3em;
+}
+
+.search-input-text {
+  color: var(--background-center);
+  border: none;
+  padding: 1em 11em 1em 2em;
+  border-radius: 50px;
+}
+
+.friend-container {
+  border: 2px solid var(--border);
+  padding: 2.5em;
+  border-radius: 10px;
+  -webkit-box-shadow:0px 0px 58px 0px var(--shadow-colors);
+  -moz-box-shadow: 0px 0px 58px 0px var(--shadow-colors);
+  box-shadow: 0px 0px 58px 0px var(--shadow-colors);
+  background: linear-gradient(to bottom left, var(--background-edges), 2%, var(--background-center), 95%, var(--background-edges));
+  min-height: 24em;
+  max-height: 24em;
+  min-width: 30em;
+  max-width: 30em;
+}
+
+.push-down-a-bit {
+  padding-top: 5.5em;
+}
+
+.spinning-icon {
+  animation: spin-animation 10s infinite;
+  display: inline-block;
+}
+
+@keyframes spin-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
 }

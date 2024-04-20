@@ -1,9 +1,13 @@
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { addFriendToList } from './functions/addFriendToList';
+import colors from '../../../functions/colors';
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import mockphoto from '../../../assets/tyedye.jpg';
 import { nameFormatting } from '../../../functions/nameFormatting';
+import NotInterestedOutlinedIcon from '@mui/icons-material/NotInterestedOutlined';
 import { randomID } from '../../../functions/randomID';
 import { statusStore } from '../../../store/status/statusStore';
+import useLocalStorage from 'use-local-storage';
 import { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userStore, userEmailStore, userProfilePicStore } from '../../../store/user/userStore';
@@ -16,6 +20,7 @@ function FriendSearchInput () {
   const currUserEmail = useRecoilValue(userEmailStore);
   const currUserPicture = useRecoilValue(userProfilePicStore);
   const [, setUpdatedStatus] = useRecoilState(statusStore);
+  const [theme] = useLocalStorage('theme', 'electric-pink');
   const roomid: string = randomID();
 
   const searchForFriends = async (e: React.FormEvent, currValue: string) => {
@@ -33,57 +38,99 @@ function FriendSearchInput () {
   };
 
   return (
-    <>
-      <form>
-        <h3>Add Contacts</h3>
-        <input 
-          value={currSearch}
-          onChange={(e) => {
-            setCurrSearch(e.target.value);
-            searchForFriends(e, e.target.value);
-          }}
-        />
-      </form>
-      {currSearch !== "" && waiting.length > 0 && (
-        <div>
-          {waiting
-            .filter((o: any) => o.name !== currUserName.toLowerCase())
-            .map((options: any) => (
-            <div 
-              key={options._id}
-              className='card'
-            >
-              <img 
-                src={
-                  options.profilepic === 'NONE'
-                    ? mockphoto
-                    : options.profilepic
-                }
-                alt='profile'
-                height={30}
-                width={30}
-              />
-              {nameFormatting(options.name)}
-              <br />
-              {options.email}
-              <button onClick={() => {
-                addFriendToList(options.profilepic, options.email, options.name, currUserEmail, roomid);
-                addFriendToList(currUserPicture, currUserEmail, currUserName, options.email, roomid);
-                setUpdatedStatus(true);
-              }}>
-                {<AddCircleOutlineOutlinedIcon />}
-              </button>
+    <div className='contact-component'>
+      <div className='friend-container' data-theme={theme}>
+        <form className='center-content'>
+          <h3 style={{ color: colors(theme) }}>Add Contacts</h3>
+          <input 
+            value={currSearch}
+            onChange={(e) => {
+              setCurrSearch(e.target.value);
+              searchForFriends(e, e.target.value);
+            }}
+            className='search-input-text'
+            style={{ background: colors(theme) }}
+          />
+        </form>
+        {currSearch !== "" && waiting.length > 0 && (
+          <div className='inside-scroll'>
+            {waiting
+              .filter((o: any) => o.name !== currUserName.toLowerCase())
+              .map((options: any) => (
+              <div 
+                key={options._id}
+                className='card'
+                style={{ color: colors(theme)}}
+              >
+                <div className='sidebyside'>
+                  <img 
+                    src={
+                      options.profilepic === 'NONE'
+                        ? mockphoto
+                        : options.profilepic
+                    }
+                    alt='profile'
+                    height={30}
+                    width={30}
+                    className='images'
+                  />
+                  <div style={{color: colors(theme)}}>
+                    {nameFormatting(options.name)}
+                  </div>
+                </div>
+                <div className='sidebyside'>
+                  <div style={{color: colors(theme)}}>
+                    {options.email}
+                  </div>
+                  <button 
+                    className='no-background'
+                    onClick={() => {
+                      addFriendToList(options.profilepic, options.email, options.name, currUserEmail, roomid);
+                      addFriendToList(currUserPicture, currUserEmail, currUserName, options.email, roomid);
+                      setUpdatedStatus(true);
+                  }}>
+                    {<AddCircleOutlineOutlinedIcon 
+                      style={{fill: colors(theme)}}
+                      className='icon-grows'
+                    />}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {currSearch !== "" && waiting.length === 0 && (
+          <div
+            className='center-content push-down-a-bit'
+          >
+            <NotInterestedOutlinedIcon 
+              style={{fill: colors(theme)}}
+              className='spinning-icon'
+              fontSize='large'
+            />
+            <br />
+            <div style={{color: colors(theme)}}>
+              User Not Found
             </div>
-          ))}
-        </div>
-      )}
-      {currSearch !== "" && waiting.length === 0 && (
-        <div>Not Found</div>
-      )}
-      {currSearch === "" && (
-        <div>...</div>
-      )}
-    </>
+          </div>
+        )}
+        {currSearch === "" && (
+          <div 
+            className='center-content push-down-a-bit'
+          >
+            <HourglassEmptyIcon 
+              style={{fill: colors(theme)}}
+              className='spinning-icon'
+              fontSize='large'
+            />
+            <br />
+            <div style={{color: colors(theme)}}>
+              Search for friends...
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   )
 }
 

@@ -43,7 +43,7 @@ function Contacts () {
     <div className='contact-component' data-theme={theme}>
       <div className='contact-box'>
         <div className='setting-up-content'>
-          <h2 className='contact-name'>Contacts</h2>
+          <h2 style={{ color: colors(theme) }}>Contacts</h2>
           <button 
             onClick={async () => {
               const request = await handleClick(currUserEmail);
