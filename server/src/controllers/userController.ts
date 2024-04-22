@@ -67,3 +67,37 @@ export async function addProfilePicture (req: Request, _res: Response, next: Nex
     })
   }
 };
+
+export async function addToMessagesArray (req: Request, res: Response, next: NextFunction) {
+  const { roomid, name, message, time, chatid, email } = req.body;
+  try {
+    const toFind = {
+      "email": email,
+      "textchats": {
+        "$elemMatch": {
+          "roomid": roomid
+        }
+      }
+    };
+    const toUpdate = {
+      "$push": {
+        "textchats.$.chats": {
+          "name": name,
+          "time": time,
+          "message": message,
+          "chatid": chatid
+        }
+      }
+    }
+    await User.findOneAndUpdate(toFind, toUpdate);
+    const response = await User.findOne(toFind);
+    res.locals.message = response;
+    return next();
+  } catch (err) {
+    console.log({err});
+    return next({
+      log: "There was an error adding to the message array.",
+      message: "There was an error adding to the message array."
+    })
+  }
+};

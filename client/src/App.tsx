@@ -6,7 +6,7 @@ function App() {
 
   return (
     <RecoilRoot>
-        <PageRoutes />
+      <PageRoutes />
     </RecoilRoot>
   );
 }

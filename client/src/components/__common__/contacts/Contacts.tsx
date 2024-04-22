@@ -84,7 +84,7 @@ function Contacts () {
                 <div className='contact-buttons'>
                   <button
                     onClick={() => {
-                      const request = whoToCall(currUser, person.roomid);
+                      const request = whoToCall(currUser, person.friendsemail, person.roomid);
                       setWhoToCall(request);
                       setTriggerText(true);
                       setFriendPhoto(person.friendspicture);
@@ -99,7 +99,7 @@ function Contacts () {
                   </button>
                   <button
                     onClick={() => {
-                      const request = whoToCall(currUser, person.roomid);
+                      const request = whoToCall(currUser, person.friendsemail, person.roomid);
                       setWhoToCall(request);
                       setTriggerText(true);
                       setFriendPhoto(person.friendspicture);

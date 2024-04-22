@@ -1,4 +1,4 @@
-.message-component {
+.messagecomponent {
   display: flex;
   flex-direction: column;
   padding: 0.15em 0.25em;
@@ -14,10 +14,10 @@
 }
 
 #other {
-  background-color: lightpink;
+  background-color: lightgreen;
 }
 
-.message-container {
+.messagecontainer {
   overflow-y: hidden;
   overflow-x: hidden;
   display: flex;
@@ -29,7 +29,7 @@
   transition: 0.5s;
 }
 
-.message-container:hover {
+.messagecontainer:hover {
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
@@ -49,6 +49,6 @@
   font-size: 0.8em;
 }
 
-.text-message-component {
+.textmessagecomponent {
   padding: 0.75em;
 }
