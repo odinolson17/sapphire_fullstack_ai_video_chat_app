@@ -33,8 +33,17 @@ function FriendSearchInput () {
         })
     });
     const response = await request.json();
-    console.log(response)
-    if (response) setWaiting(response);
+    if (response) {
+      if (response.length === 1) {
+        if (response[0].name === currUserName.toLowerCase()) {
+          setWaiting([]);
+        } else {
+          setWaiting(response);
+        }
+      } else {
+        setWaiting(response);
+      }
+    }
   };
 
   return (

@@ -3,12 +3,13 @@ import {
   callSingularContactProfilePic
 } from '../../../store/call/callStore';
 import { getTime } from '../../../functions/getTime';
+import { grabCurrentMessages } from './functions/grabCurrentMessages';
 import mockphoto from '../../../assets/tyedye.jpg';
 import { randomIDwithLetters } from '../../../functions/randomID';
 import { saveMessageHandleClick } from './functions/saveMessageHandleClick';
 import { Socket } from 'socket.io-client'
 import { statusStore, triggerTextStore } from '../../../store/status/statusStore';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useLayoutEffect, useState, useRef } from 'react';
 import { userEmailStore, userProfilePicStore } from '../../../store/user/userStore';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { videoStore } from '../../../store/video/videoStore';
@@ -59,16 +60,26 @@ function ChatBox ({ socket, name, room }: Props) {
       await saveMessageHandleClick(messageData, callInfo.email!);
       setMessageList(recentTexts);
       //setMessageList((list) => [...list, messageData])
-
       setCurrMessage("");
     }
   };
 
+  useLayoutEffect(() => {
+    // to get the saved texts when opening the component
+    (async () => {
+      const grabbedMessages = await grabCurrentMessages(room, currUserEmail);
+      setMessageList(grabbedMessages);
+    })();
+  }, [currUserEmail, room]);
+
   useEffect(() => {
     socket.on("receive_message", (data) => {
       // do fetch request here!
-
-      //setMessageList((list) => [...list, data]);
+      // (async () => {
+      //   const grabbedMessages = await grabCurrentMessages(room, currUserEmail);
+      //   setMessageList(grabbedMessages);
+      // })();
+      setMessageList((list) => [...list, data]);
     })
   }, [socket]);
 

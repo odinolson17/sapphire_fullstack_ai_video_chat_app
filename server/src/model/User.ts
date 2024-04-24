@@ -1,10 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
 
-interface Contacts {
-  name: string;
-  email: string;
-}
-
 interface Favsongs {
   artist: string;
   title: string;

@@ -101,3 +101,26 @@ export async function addToMessagesArray (req: Request, res: Response, next: Nex
     })
   }
 };
+
+export async function grabMessages (req: Request, res: Response, next: NextFunction) {
+  const { roomid, email } = req.body;
+  try {
+    const toFind = {
+      "email": email,
+      "textchats": {
+        "$elemMatch": {
+          "roomid": roomid
+        }
+      }
+    };
+    const response = await User.findOne(toFind);
+    res.locals.messages = response;
+    return next();
+  } catch (err) {
+    console.log({err});
+    return next({
+      log: "There was an error adding grabbing these messages.",
+      message: "There was an error adding grabbing these messages."
+    })
+  }
+};
