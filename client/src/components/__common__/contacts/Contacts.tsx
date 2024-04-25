@@ -9,6 +9,7 @@ import { handleClick } from './functions/handleClick';
 import mockphoto from '../../../assets/tyedye.jpg';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import { nameFormatting } from '../../../functions/nameFormatting';
+import RecentActorsOutlinedIcon from '@mui/icons-material/RecentActorsOutlined';
 import { statusStore, triggerTextStore } from '../../../store/status/statusStore';
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
 import useLocalStorage from 'use-local-storage';
@@ -38,7 +39,7 @@ function Contacts () {
     };
     runHandleClick();
   }
-
+  console.log('contatcs', contacts)
   return (
     <div className='contact-component' data-theme={theme}>
       <div className='contact-box'>
@@ -125,7 +126,20 @@ function Contacts () {
           </div>
         )}
         {contacts.length === 0 && (
-          <div>waiting for contacts</div>
+          <div
+            className='center-content paddingDown'
+          >
+            <RecentActorsOutlinedIcon 
+              style={{fill: colors(theme)}}
+              fontSize='large'
+            />
+            <br />
+            <div 
+              style={{color: colors(theme)}}
+            >
+              waiting for contacts
+            </div>
+          </div>
         )}
         </div>
       </div>

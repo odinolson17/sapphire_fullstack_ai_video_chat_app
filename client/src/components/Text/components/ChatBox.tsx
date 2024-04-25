@@ -55,11 +55,11 @@ function ChatBox ({ socket, name, room }: Props) {
 
       await socket.emit("send_message", messageData);
       // adds to current user
-      const recentTexts = await saveMessageHandleClick(messageData, currUserEmail);
+      await saveMessageHandleClick(messageData, currUserEmail);
       // adds to the other user!
       await saveMessageHandleClick(messageData, callInfo.email!);
-      setMessageList(recentTexts);
-      //setMessageList((list) => [...list, messageData])
+      //setMessageList(recentTexts);
+      setMessageList((list) => [...list, messageData])
       setCurrMessage("");
     }
   };
